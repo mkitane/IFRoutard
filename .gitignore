@@ -7,38 +7,16 @@ profile
 CVS
 
 # NetBeans specific #
-project-root-directory/
-+ nbproject/
-  build-impl.xml
-  + private/
-  + project.properties
-  + project.xml
-+ src/
-+ test/
-+ build.xml
-
-
 nbproject/private/
+nbproject/
 build/
 nbbuild/
 dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
-
-
-project-root-directory/
-+ build/
-+ dist/
-+ nbproject/
-  build-impl.xml
-  + private/
-  + project.properties
-  + project.xml
-+ src/
-+ test/
-+ build.xml
-
+build.xml
+manifest.mf
 
 # Class Files #
 *.class
