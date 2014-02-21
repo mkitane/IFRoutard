@@ -13,7 +13,7 @@ import metier.modele.Client;
  *
  * @author Mehdi
  */
-public class ClientService {
+public class Service {
 
     public static void ajouterClient(Client c){
        JpaUtil.creerEntityManager();
