@@ -23,5 +23,6 @@ manifest.mf
 
 # Package Files #
 *.jar
+!others/opencsv-2.3.jar
 *.war
 *.ear
