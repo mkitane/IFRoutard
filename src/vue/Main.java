@@ -6,6 +6,7 @@ package vue;
 
 import dao.ClientDAO;
 import dao.JpaUtil;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import metier.modele.Client;
@@ -18,10 +19,11 @@ import metier.service.Service;
 public class Main {
     public static void main(String[] args) {
 
-
+       Date d = new Date();
+       
        Client e = new Client(); 
-       Client a = new Client("Thomas" , "Escure"); 
-       Client c = new Client("Mehdi", "Kitane");
+       Client a = new Client( "mr","escure", "thomas", d, "france","06","monmail",true); 
+       Client c = new Client( "mr","kitane", "mehdi", d, "france","06","monmail",true); 
 
        
        Service.ajouterClient(e);

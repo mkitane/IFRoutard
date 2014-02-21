@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
         
 /**
  *
@@ -41,15 +42,58 @@ public class Client {
         
     }
     
-    public Client(String nom, String prenom){
+    public Client( String civilite, String nom, String prenom, Date date, String adressePostale,String telephone,String adresseElectronique,boolean accepte){
         this.nom = nom; 
-        this.prenom = prenom; 
+        this.prenom = prenom;
+        this.civilite=civilite;
+        this.date=date;
+        this.telephone=telephone;
+        this.accepte=accepte;
+        this.adressePostale=adressePostale;
+        this.adresseElectronique=adresseElectronique;
     }
     
     
     public String toString(){
-        String s = "Client n" + ID + " Nom : " + nom + " Prenom : " + prenom;
+        String s = "Client n" + ID + " civilite " + civilite + " Nom : " + nom + " Prenom : " + prenom + " date de naissance : " + date + "adresse postale" + adressePostale + " adresse electronique : " + adresseElectronique + " telephone : " + telephone + " accepte les alertes : " + accepte ;
         return s; 
+    }
+
+       
+    public int getID() {
+        return ID;
+    }
+
+    public String getCivilite() {
+        return civilite;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public String getAdressePostale() {
+        return adressePostale;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public String getAdresseElectronique() {
+        return adresseElectronique;
+    }
+
+    public boolean isAccepte() {
+        return accepte;
     }
 
     
