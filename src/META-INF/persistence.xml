@@ -5,7 +5,7 @@
     <class>metier.modele.Client</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/IFRoutardDB"/>
-      <property name="javax.persistence.jdbc.password" value="mehdi123@"/>
+      <property name="javax.persistence.jdbc.password" value="test"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="javax.persistence.jdbc.user" value="mkitane"/>
       <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>

@@ -2,11 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package metier.modele;
+package vue;
 
 import dao.ClientDAO;
 import dao.JpaUtil;
 import javax.persistence.EntityManager;
+import metier.modele.Client;
 import metier.service.ClientService;
 
 /**

@@ -32,22 +32,15 @@ public class ClientService {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     public static Client rechercherClientParID(int ID){
         String urlDB = "jdbc:derby://localhost:1527/IFRoutardDB";
         try {
-            Connection maConnection = DriverManager.getConnection(urlDB);
+            Connection maConnection = DriverManager.getConnection(urlDB,"mkitane","test");
             Statement monStatement = maConnection.createStatement(); 
             
             ResultSet monResult = monStatement.executeQuery("SELECT * from client where ID_CLIENT = " + ID); 
             
+                        
             while(monResult.next()){
                 System.out.println(monResult);
             }
