@@ -47,7 +47,10 @@ public class Client {
     }
     
     
-    
+    public String toString(){
+        String s = "Client n" + ID + " Nom : " + nom + " Prenom : " + prenom;
+        return s; 
+    }
 
     
     

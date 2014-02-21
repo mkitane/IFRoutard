@@ -27,6 +27,6 @@ public class Main {
        ClientService.ajouterClient(a);
        ClientService.ajouterClient(c);
 
-       ClientService.rechercherClientParID(1);
+       System.out.println(ClientService.rechercherClientParID(2));
    }
 }
