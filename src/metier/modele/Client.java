@@ -4,8 +4,14 @@
  */
 package metier.modele;
 
+import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
         
 /**
  *
@@ -13,34 +19,38 @@ import javax.persistence.Id;
  */
 @Entity
 public class Client {
-    @Id
+   
+    @Id   
+    @Column(name = "ID_CLIENT")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int ID; 
-    private String nom; 
-
-    /*
+    
     private String civilite; 
     private String nom; 
     private String prenom; 
-    private int date; 
+    
+    @Temporal(TemporalType.DATE)
+    private Date date; 
+    
     private String adressePostale; 
-    private String adresseElectronique; 
     private String telephone; 
+    private String adresseElectronique; 
     private boolean accepte; 
-    */
-    
-    public Client(){
-        ID = 1 ; 
-        nom = "okok"; 
-    }
 
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
+    public Client() {
+        
     }
     
-   
+    public Client(String nom, String prenom){
+        this.nom = nom; 
+        this.prenom = prenom; 
+    }
+    
+    
+    
 
+    
+    
+
+  
 }

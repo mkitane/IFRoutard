@@ -12,12 +12,6 @@ import metier.modele.Client;
  */
 public class ClientDAO {
     public static void Persist(Client c){
-       JpaUtil.creerEntityManager();
-       JpaUtil.ouvrirTransaction();
-       
        JpaUtil.obtenirEntityManager().persist(c); 
-       
-       JpaUtil.validerTransaction();
-       JpaUtil.fermerEntityManager();
     }
 }
