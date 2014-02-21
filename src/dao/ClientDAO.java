@@ -36,4 +36,12 @@ public class ClientDAO {
         
     } 
     
+    public static List<Client> obtenirClients(){
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query query = em.createQuery("SELECT e from Client e");
+        
+        List<Client> list = query.getResultList();
+        
+        return list; 
+    }
 }

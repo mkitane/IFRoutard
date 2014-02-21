@@ -6,6 +6,7 @@ package metier.service;
 
 import dao.ClientDAO;
 import dao.JpaUtil;
+import java.util.List;
 import metier.modele.Client;
 
 /**
@@ -37,5 +38,15 @@ public class ClientService {
        return c; 
     }
     
+    public static List<Client> obtenirClients(){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       List<Client> l = ClientDAO.obtenirClients();
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return l; 
+    }
     
 }

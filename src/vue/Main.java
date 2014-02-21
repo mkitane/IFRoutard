@@ -6,6 +6,7 @@ package vue;
 
 import dao.ClientDAO;
 import dao.JpaUtil;
+import java.util.List;
 import javax.persistence.EntityManager;
 import metier.modele.Client;
 import metier.service.ClientService;
@@ -28,5 +29,10 @@ public class Main {
        ClientService.ajouterClient(c);
 
        System.out.println(ClientService.rechercherClientParID(2));
-   }
+   
+        List<Client> l = ClientService.obtenirClients();
+        for(int i=0; i < l.size(); i++){
+            System.out.println(l.get(i));
+        }
+    }
 }
