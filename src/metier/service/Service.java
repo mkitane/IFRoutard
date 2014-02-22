@@ -4,10 +4,14 @@
  */
 package metier.service;
 
+import dao.CircuitDAO;
 import dao.ClientDAO;
 import dao.JpaUtil;
+import dao.SejourDAO;
 import java.util.List;
+import metier.modele.Circuit;
 import metier.modele.Client;
+import metier.modele.Sejour;
 
 /**
  *
@@ -49,4 +53,26 @@ public class Service {
        return l; 
     }
     
+    
+    public static void ajouterSejour(Sejour s){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       SejourDAO.persist(s);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+    }
+    
+     public static void ajouterCircuit(Circuit c){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       CircuitDAO.persist(c);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+    }
+     
+     
 }

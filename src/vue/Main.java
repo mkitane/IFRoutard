@@ -9,7 +9,9 @@ import dao.JpaUtil;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+import metier.modele.Circuit;
 import metier.modele.Client;
+import metier.modele.Sejour;
 import metier.service.Service;
 
 /**
@@ -36,5 +38,14 @@ public class Main {
         for(int i=0; i < l.size(); i++){
             System.out.println(l.get(i));
         }
+        
+        
+        
+        Sejour s = new Sejour("1","2","3","4","5","6");
+        Circuit s1 = new Circuit("7",8,"9","10","11","12","13");
+        
+        Service.ajouterSejour(s);
+        Service.ajouterCircuit(s1);
+
     }
 }
