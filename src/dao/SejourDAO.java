@@ -23,5 +23,6 @@ public class SejourDAO {
         JpaUtil.obtenirEntityManager().remove(c); 
     }
     
+    
 }
     
