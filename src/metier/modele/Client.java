@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+import java.util.*;
         
 /**
  *
@@ -37,7 +37,7 @@ public class Client {
     private String telephone; 
     private String adresseElectronique; 
     private boolean accepte; 
-
+    private ArrayList<Conseiller> listeConseiller = new ArrayList<Conseiller>();
     public Client() {
         
     }
@@ -57,6 +57,11 @@ public class Client {
     public String toString(){
         String s = "Client n" + ID + " civilite " + civilite + " Nom : " + nom + " Prenom : " + prenom + " date de naissance : " + date + "adresse postale" + adressePostale + " adresse electronique : " + adresseElectronique + " telephone : " + telephone + " accepte les alertes : " + accepte ;
         return s; 
+    }
+    
+    public void AjoutConseiller(Conseiller c){
+        
+        listeConseiller.add(c);
     }
 
        
