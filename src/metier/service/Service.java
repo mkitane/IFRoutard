@@ -7,10 +7,12 @@ package metier.service;
 import dao.CircuitDAO;
 import dao.ClientDAO;
 import dao.JpaUtil;
+import dao.PaysDAO;
 import dao.SejourDAO;
 import java.util.List;
 import metier.modele.Circuit;
 import metier.modele.Client;
+import metier.modele.Pays;
 import metier.modele.Sejour;
 
 /**
@@ -69,6 +71,16 @@ public class Service {
        JpaUtil.ouvrirTransaction();
        
        CircuitDAO.persist(c);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+    }
+     
+    public static void ajouterPays(Pays c){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       PaysDAO.persist(c);
        
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
