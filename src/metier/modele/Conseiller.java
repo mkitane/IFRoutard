@@ -31,6 +31,7 @@ public class Conseiller {
     private Pays paysSpecialisation;
     
     private String mdp;
+    
     @ManyToMany
     private ArrayList<Client> listeClients = new ArrayList<Client>();
 
