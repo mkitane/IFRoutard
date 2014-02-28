@@ -24,5 +24,11 @@ public class Sejour extends Voyage{
         super(codeVoyage, codePays, intitule, duree, description);
         this.Residence = Residence;
     }
+
+    public String toString() {
+        return "Sejour{" + super.toString() + "Residence=" + Residence + '}';
+    }
+    
+    
     
 }

@@ -20,13 +20,13 @@ public abstract class Voyage{
     @Column(name = "Code_Voyage")
     //@GeneratedValue(strategy = GenerationType.AUTO)
     //private int ID; 
-    private String codeVoyage;
+    protected String codeVoyage;
 
     
-    private String codePays; 
-    private String intitule; 
-    private String duree; 
-    private String description; 
+    protected String codePays; 
+    protected String intitule; 
+    protected String duree; 
+    protected String description; 
 
     
     public Voyage(){
@@ -40,6 +40,10 @@ public abstract class Voyage{
         this.duree = duree;
         this.description = description;
     }
+
+    public String toString() {
+        return "codeVoyage=" + codeVoyage + ", codePays=" + codePays + ", intitule=" + intitule + ", duree=" + duree + ", description=" + description ;
+    }
     
- 
+    
 }

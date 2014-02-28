@@ -26,6 +26,10 @@ public class Circuit extends Voyage{
         this.transport = transport;
         this.kmParcourus = kmParcourus;
     }
+
+    public String toString() {
+        return "Circuit{" + super.toString() + "transport=" + transport + ", kmParcourus=" + kmParcourus + '}';
+    }
     
     
 }

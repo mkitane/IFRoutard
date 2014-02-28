@@ -37,6 +37,10 @@ public class Pays {
         this.population = population;
         this.regimePolitique = regimePolitique;
     }
+
+    public String toString() {
+        return ("Pays: "+  nom + " [" + code + "] (" + regimePolitique + "), Capitale: " + capitale + ", Région: " + region + ", Langues: " + langues + ", " + superficie + " km², " + population + " millions d'hbitants");
+    }
     
     
 }

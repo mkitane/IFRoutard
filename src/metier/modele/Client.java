@@ -31,11 +31,11 @@ public class Client {
     private String prenom; 
     
     @Temporal(TemporalType.DATE)
-    private Date date; 
+    private Date dateNaissance; 
     
-    private String adressePostale; 
+    private String adresse; 
     private String telephone; 
-    private String adresseElectronique; 
+    private String email; 
     private boolean accepte; 
     private ArrayList<Conseiller> listeConseiller = new ArrayList<Conseiller>();
     public Client() {
@@ -46,17 +46,16 @@ public class Client {
         this.nom = nom; 
         this.prenom = prenom;
         this.civilite=civilite;
-        this.date=date;
+        this.dateNaissance=date;
         this.telephone=telephone;
         this.accepte=accepte;
-        this.adressePostale=adressePostale;
-        this.adresseElectronique=adresseElectronique;
+        this.adresse=adressePostale;
+        this.email=adresseElectronique;
     }
     
     
     public String toString(){
-        String s = "Client n" + ID + " civilite " + civilite + " Nom : " + nom + " Prenom : " + prenom + " date de naissance : " + date + "adresse postale" + adressePostale + " adresse electronique : " + adresseElectronique + " telephone : " + telephone + " accepte les alertes : " + accepte ;
-        return s; 
+        return ("Client: "+  civilite + " " + nom + " " + prenom + ", né le " + dateNaissance + ", habitant à " + adresse + ", téléphone: " + telephone + ", e-mail: " + email);
     }
     
     public void AjoutConseiller(Conseiller c){
@@ -81,20 +80,20 @@ public class Client {
         return prenom;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateNaissance() {
+        return dateNaissance;
     }
 
-    public String getAdressePostale() {
-        return adressePostale;
+    public String getAdresse() {
+        return adresse;
     }
 
     public String getTelephone() {
         return telephone;
     }
 
-    public String getAdresseElectronique() {
-        return adresseElectronique;
+    public String getEmail() {
+        return email;
     }
 
     public boolean isAccepte() {

@@ -11,6 +11,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import metier.modele.Circuit;
 import metier.modele.Client;
+import metier.modele.Depart;
+import metier.modele.Pays;
 import metier.modele.Sejour;
 import metier.service.Service;
 
@@ -47,5 +49,11 @@ public class Main {
         Service.ajouterSejour(s);
         Service.ajouterCircuit(s1);
 
+        
+        Pays p1 = new Pays("B1","B2","B3","B4","B5",23,23.3,"B6");
+        Service.ajouterPays(p1);
+        
+        Depart d1 = new Depart("D1",d,"D2",23,"D3");
+        Service.ajouterDepart(d1);
     }
 }
