@@ -5,28 +5,37 @@
 package metier.modele;
 
 import java.util.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Thomas
  */
+@Entity
 public class Conseiller {
     // attributs privés
 
-    private Pays paysSpecialisation;
+    @Id   
+    @Column(name = "ID_CONSEILLER")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    
+    
+    @OneToMany
+    private List<Pays> paysSpecialisation = new ArrayList<Pays>();
+    
     private String mdp;
-    private ArrayList<Client> listeClients = new ArrayList<Client>();
+    @ManyToMany
+    private List<Client> listeClients = new ArrayList<Client>();
 
     public Conseiller() {
     }
 
-    public Conseiller(Pays PaysSpecialisation, String mdp) {
-        this.paysSpecialisation = PaysSpecialisation;
-        this.mdp = mdp;
-    }
-
-    public void AjoutClient(Client c) {
-        listeClients.add(c);
-    }
+  
 }

@@ -4,7 +4,10 @@
  */
 package metier.modele;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -14,6 +17,10 @@ import javax.persistence.Id;
 @Entity
 public class Pays {
     @Id   
+    @Column(name = "ID_Pays")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int ID; 
+      
     private String code;
         
     private String nom; 
