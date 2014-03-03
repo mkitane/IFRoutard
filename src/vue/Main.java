@@ -6,7 +6,6 @@ package vue;
 
 import dao.ClientDAO;
 import dao.JpaUtil;
-import dao.PaysDAO;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -56,14 +55,5 @@ public class Main {
         
         Depart d1 = new Depart("D1",d,"D2",23,"D3");
         Service.ajouterDepart(d1);
-        
-        /*
-        Pays p2 = new Pays("Afrique du sud","AFR","B3","B4","B5",23,23.3,"B6");
-        Service.ajouterPays(p2);
-        Pays p3 = new Pays("Albanie","ALB","B3","B4","B5",23,23.3,"B6");
-        Service.ajouterPays(p3);
-        
-        System.out.println("Le pays recherche est : " + PaysDAO.rechercherParCode("AFR"));
-        */
     }
 }
