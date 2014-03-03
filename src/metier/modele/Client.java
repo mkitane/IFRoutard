@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.*;
-import javax.persistence.ManyToMany;        
+        
 /**
  *
  * @author Mehdi
@@ -36,8 +36,7 @@ public class Client {
     private String adresse; 
     private String telephone; 
     private String email; 
-    private boolean accepte;
-    @ManyToMany
+    private boolean accepte; 
     private ArrayList<Conseiller> listeConseiller = new ArrayList<Conseiller>();
     public Client() {
         
