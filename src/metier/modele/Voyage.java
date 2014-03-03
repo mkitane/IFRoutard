@@ -4,13 +4,11 @@
  */
 package metier.modele;
 
-import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToOne;
 /**
  *
  * @author Mehdi
@@ -24,14 +22,12 @@ public abstract class Voyage{
     //private int ID; 
     protected String codeVoyage;
 
+    
+    protected String codePays; 
     protected String intitule; 
     protected String duree; 
     protected String description; 
-    
-    protected String codePays; 
-    @ManyToOne
-    protected Pays pays; 
-    private ArrayList<Depart> listeDeparts = new ArrayList<Depart>(); 
+
     
     public Voyage(){
         
