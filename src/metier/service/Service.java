@@ -98,6 +98,28 @@ public class Service {
     }
      
     
+     public static Pays rechercherPaysParCode(String codePays){
+        
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       Pays p = PaysDAO.rechercherParCode(codePays);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return p; 
+    }
+    
+    public static List<Pays> obtenirPays(){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       List<Pays> l = PaysDAO.obtenirPays();
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return l; 
+    }
     
     
     //-----------------------------Methode Relatives aux Departs-------------------------------//

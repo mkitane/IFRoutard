@@ -4,6 +4,9 @@
  */
 package dao;
 
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import metier.modele.Pays;
 
 /**
@@ -22,4 +25,25 @@ public class PaysDAO {
     public static void remove(Pays c){
         JpaUtil.obtenirEntityManager().remove(c); 
     }
+    
+    public static Pays rechercherParCode(String codePays){
+        
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query query = em.createQuery("SELECT e from Pays e where e.code = :codePays");
+        query.setParameter("codePays", codePays);
+   
+        
+        return (Pays) query.getSingleResult(); 
+        
+    } 
+    
+    public static List<Pays> obtenirPays(){
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query query = em.createQuery("SELECT e from Pays e");
+        
+        List<Pays> list = query.getResultList();
+        
+        return list; 
+    }
+
 }
