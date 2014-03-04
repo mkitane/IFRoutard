@@ -37,5 +37,9 @@ public class Conseiller {
     public Conseiller() {
     }
 
+    /*public Conseiller(String mdp) {
+        this.mdp = mdp;    COMMENT initialiser les listes de client et de paysspécialisation? c'est géré par la base de données?
+    }*/
+
   
 }
