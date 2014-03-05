@@ -61,16 +61,6 @@ public class Service {
        return l; 
     }
     
-    public static void supprimerClient(Client c){
-       JpaUtil.creerEntityManager();
-       JpaUtil.ouvrirTransaction();
-       
-       ClientDAO.remove(c);
-       
-       JpaUtil.validerTransaction();
-       JpaUtil.fermerEntityManager();
-    }
-    
     //-----------------------------Methodes Relatives aux Sejours-------------------------------//
 
     public static void ajouterSejour(Sejour s){
@@ -78,16 +68,6 @@ public class Service {
        JpaUtil.ouvrirTransaction();
        
        SejourDAO.persist(s);
-       
-       JpaUtil.validerTransaction();
-       JpaUtil.fermerEntityManager();
-    }
-    
-    public static void supprimerSejour(Sejour s){
-       JpaUtil.creerEntityManager();
-       JpaUtil.ouvrirTransaction();
-       
-       SejourDAO.remove(s);
        
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
@@ -105,15 +85,7 @@ public class Service {
        JpaUtil.fermerEntityManager();
     }
      
-    public static void supprimerCircuit(Circuit c){
-       JpaUtil.creerEntityManager();
-       JpaUtil.ouvrirTransaction();
-       
-       CircuitDAO.remove(c);
-       
-       JpaUtil.validerTransaction();
-       JpaUtil.fermerEntityManager();
-    }
+    
      
      
     //-----------------------------Methodes Relatives aux Pays-------------------------------//
@@ -152,15 +124,6 @@ public class Service {
        return l; 
     }
     
-    public static void supprimerPays(Pays p){
-       JpaUtil.creerEntityManager();
-       JpaUtil.ouvrirTransaction();
-       
-       PaysDAO.remove(p);
-       
-       JpaUtil.validerTransaction();
-       JpaUtil.fermerEntityManager();
-    }
     
     //-----------------------------Methodes Relatives aux Departs-------------------------------//
     public static void ajouterDepart(Depart c){
@@ -168,16 +131,6 @@ public class Service {
        JpaUtil.ouvrirTransaction();
        
        DepartDAO.persist(c);
-       
-       JpaUtil.validerTransaction();
-       JpaUtil.fermerEntityManager();
-    }
-    
-    public static void supprimerDepart(Depart d){
-       JpaUtil.creerEntityManager();
-       JpaUtil.ouvrirTransaction();
-       
-       DepartDAO.remove(d);
        
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
@@ -195,14 +148,6 @@ public class Service {
 
     }
     
-    public static void supprimerConseiller(Conseiller c){
-       JpaUtil.creerEntityManager();
-       JpaUtil.ouvrirTransaction();
-       
-       ConseillerDAO.remove(c);
-       
-       JpaUtil.validerTransaction();
-       JpaUtil.fermerEntityManager();
-    }
+    
 }
 
