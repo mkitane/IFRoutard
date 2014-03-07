@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -24,22 +26,88 @@ public class Conseiller {
     @Id   
     @Column(name = "ID_CONSEILLER")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    protected Integer id;
+    
+    protected String civilite; 
+    protected String nom; 
+    protected String prenom; 
+    @Temporal(TemporalType.DATE)
+    protected Date dateNaissance; 
+    
+    protected String adresse; 
+    protected String telephone; 
+    protected String email; 
     
     
+    protected String mdp;
+
     @OneToMany
-    private List<Pays> paysSpecialisation = new ArrayList<Pays>();
+    protected List<Pays> paysSpecialisation = new ArrayList<Pays>();
     
-    private String mdp;
     @ManyToMany
-    private List<Client> listeClients = new ArrayList<Client>();
+    protected List<Client> listeClients = new ArrayList<Client>();
 
     public Conseiller() {
     }
 
-    /*public Conseiller(String mdp) {
-        this.mdp = mdp;    COMMENT initialiser les listes de client et de paysspécialisation? c'est géré par la base de données?
-    }*/
+    public Conseiller(String civilite,String nom, String prenom, Date dateNaissance, String adresse, String telephone, String email, String mdp) {
+        this.civilite = civilite;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.email = email;
+        this.mdp = mdp;
+    }
 
+    @Override
+    public String toString() {
+        return "Conseiller{" + "civilite=" + civilite + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance + ", adresse=" + adresse + ", telephone=" + telephone + ", email=" + email + ", mdp=" + mdp + '}';
+    }
+
+    
+    public String getCivilite() {
+        return civilite;
+    }
+      
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getMdp() {
+        return mdp;
+    }
+
+    public List<Pays> getPaysSpecialisation() {
+        return paysSpecialisation;
+    }
+
+    public List<Client> getListeClients() {
+        return listeClients;
+    }
+
+
+    
   
 }

@@ -4,7 +4,6 @@
  */
 package metier.modele;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 
 /**
@@ -14,8 +13,8 @@ import javax.persistence.Entity;
 @Entity
 public class Circuit extends Voyage{
     
-    private String transport; 
-    private int kmParcourus;
+    protected String transport; 
+    protected int kmParcourus;
 
     public Circuit() {
         super();
@@ -29,6 +28,14 @@ public class Circuit extends Voyage{
 
     public String toString() {
         return "Circuit{" + super.toString() + "transport=" + transport + ", kmParcourus=" + kmParcourus + '}';
+    }
+
+    public String getTransport() {
+        return transport;
+    }
+
+    public int getKmParcourus() {
+        return kmParcourus;
     }
     
     

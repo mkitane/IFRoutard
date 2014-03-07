@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import metier.modele.Circuit;
 import metier.modele.Client;
+import metier.modele.Conseiller;
 import metier.modele.Depart;
 import metier.modele.Pays;
 import metier.modele.Sejour;
@@ -23,8 +24,8 @@ public class Main {
        Date d = new Date();
        
        Client e = new Client(); 
-       Client a = new Client( "mr","escure", "thomas", d, "france","06","monmail",true); 
-       Client c = new Client( "mr","kitane", "mehdi", d, "france","06","monmail",true); 
+       Client a = new Client( "mr","escure", "thomas", d, "france","06","monmail",true,"mdp"); 
+       Client c = new Client( "mr","kitane", "mehdi", d, "france","06","monmail",true,"mdp"); 
 
        
        Service.ajouterClient(e);
@@ -61,5 +62,8 @@ public class Main {
         
         System.out.println("Le pays recherche est : " + Service.rechercherPaysParCode("AFR"));
         
+        
+        Conseiller a1 = new Conseiller("Mr","Kar","Ben",d,"adresse","tel","email","mdp"); 
+        Service.ajouterConseiller(a1);
     }
 }

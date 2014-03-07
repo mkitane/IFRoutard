@@ -4,7 +4,6 @@
  */
 package metier.modele;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 
 
@@ -14,7 +13,7 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Sejour extends Voyage{
-    private String Residence;
+    protected String Residence;
 
     public Sejour() {
         super();
@@ -28,7 +27,10 @@ public class Sejour extends Voyage{
     public String toString() {
         return "Sejour{" + super.toString() + "Residence=" + Residence + '}';
     }
-    
-    
+
+    public String getResidence() {
+        return Residence;
+    }
+ 
     
 }

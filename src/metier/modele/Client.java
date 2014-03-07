@@ -25,38 +25,46 @@ public class Client {
     @Id   
     @Column(name = "ID_CLIENT")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int ID; 
+    protected int ID; 
     
-    private String civilite; 
-    private String nom; 
-    private String prenom; 
+    protected String civilite; 
+    protected String nom; 
+    protected String prenom; 
     
     @Temporal(TemporalType.DATE)
-    private Date dateNaissance; 
+    protected Date dateNaissance; 
     
-    private String adresse; 
-    private String telephone; 
-    private String email; 
+    protected String adresse; 
+    protected String telephone; 
+    protected String email; 
     
     
-     private boolean accepte;
+    protected boolean accepte;
+    protected String motDePasse; 
+    
     @ManyToMany(mappedBy="listeClients")
-    private List<Conseiller> listeConseiller;
+    protected List<Conseiller> listeConseiller = new ArrayList<Conseiller>();
+    
+    
+    
     public Client() {
         
     }
-    
-    public Client( String civilite, String nom, String prenom, Date date, String adressePostale,String telephone,String adresseElectronique,boolean accepte){
-        this.nom = nom; 
+
+    public Client(String civilite, String nom, String prenom, Date dateNaissance, String adresse, String telephone, String email, boolean accepte, String motDePasse) {
+        this.civilite = civilite;
+        this.nom = nom;
         this.prenom = prenom;
-        this.civilite=civilite;
-        this.dateNaissance=date;
-        this.telephone=telephone;
-        this.accepte=accepte;
-        this.adresse=adressePostale;
-        this.email=adresseElectronique;
+        this.dateNaissance = dateNaissance;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.email = email;
+        this.accepte = accepte;
+        this.motDePasse = motDePasse;
     }
     
+  
+   
     
     public String toString(){
         return ("Client: "+  civilite + " " + nom + " " + prenom + ", né le " + dateNaissance + ", habitant à " + adresse + ", téléphone: " + telephone + ", e-mail: " + email);
@@ -65,11 +73,6 @@ public class Client {
     public void AjoutConseiller(Conseiller c){
         
         listeConseiller.add(c);
-    }
-
-       
-    public int getID() {
-        return ID;
     }
 
     public String getCivilite() {
@@ -104,8 +107,14 @@ public class Client {
         return accepte;
     }
 
-    
-    
+    public String getMotDePasse() {
+        return motDePasse;
+    }
+
+    public List<Conseiller> getListeConseiller() {
+        return listeConseiller;
+    }
+
 
   
 }

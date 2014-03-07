@@ -19,17 +19,17 @@ public class Pays {
     @Id   
     @Column(name = "ID_Pays")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int ID; 
+    protected int ID; 
       
-    private String code;
+    protected String code;
         
-    private String nom; 
-    private String region; 
-    private String capitale; 
-    private String langues; 
-    private int superficie; 
-    private double population; 
-    private String regimePolitique; 
+    protected String nom; 
+    protected String region; 
+    protected String capitale; 
+    protected String langues; 
+    protected int superficie; 
+    protected double population; 
+    protected String regimePolitique; 
 
     public Pays() {
     }
@@ -47,6 +47,38 @@ public class Pays {
 
     public String toString() {
         return ("Pays: "+  nom + " [" + code + "] (" + regimePolitique + "), Capitale: " + capitale + ", Région: " + region + ", Langues: " + langues + ", " + superficie + " km², " + population + " millions d'hbitants");
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public String getCapitale() {
+        return capitale;
+    }
+
+    public String getLangues() {
+        return langues;
+    }
+
+    public int getSuperficie() {
+        return superficie;
+    }
+
+    public double getPopulation() {
+        return population;
+    }
+
+    public String getRegimePolitique() {
+        return regimePolitique;
     }
     
     

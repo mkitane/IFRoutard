@@ -25,7 +25,7 @@ public abstract class Voyage{
     @Id   
     @Column(name = "Code_Voyage")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int ID; 
+    protected int ID; 
     
     
     protected String codeVoyage;
@@ -40,6 +40,7 @@ public abstract class Voyage{
     
     @OneToOne
     protected Pays paysVoyage; 
+    
     @OneToMany
     protected List<Depart> listeDeparts = new ArrayList<Depart>(); 
     
@@ -58,6 +59,34 @@ public abstract class Voyage{
 
     public String toString() {
         return "codeVoyage=" + codeVoyage + ", codePays=" + codePays + ", intitule=" + intitule + ", duree=" + duree + ", description=" + description ;
+    }
+
+    public String getCodeVoyage() {
+        return codeVoyage;
+    }
+
+    public String getCodePays() {
+        return codePays;
+    }
+
+    public String getIntitule() {
+        return intitule;
+    }
+
+    public String getDuree() {
+        return duree;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Pays getPaysVoyage() {
+        return paysVoyage;
+    }
+
+    public List<Depart> getListeDeparts() {
+        return listeDeparts;
     }
     
     

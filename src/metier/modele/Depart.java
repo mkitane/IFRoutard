@@ -22,17 +22,17 @@ public class Depart {
     @Id   
     @Column(name = "ID_Depart")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int ID; 
+    protected int ID; 
       
-    private String codeVoyage;
+    protected String codeVoyage;
     
     @Temporal(TemporalType.DATE)
-    private Date dateDepart; 
+    protected Date dateDepart; 
     
     
-    private String villeDepart; 
-    private int tarif; 
-    private String transport;
+    protected String villeDepart; 
+    protected int tarif; 
+    protected String transport;
 
     
     
@@ -45,6 +45,26 @@ public class Depart {
         this.villeDepart = villeDepart;
         this.tarif = tarif;
         this.transport = transport;
+    }
+
+    public String getCodeVoyage() {
+        return codeVoyage;
+    }
+
+    public Date getDateDepart() {
+        return dateDepart;
+    }
+
+    public String getVilleDepart() {
+        return villeDepart;
+    }
+
+    public int getTarif() {
+        return tarif;
+    }
+
+    public String getTransport() {
+        return transport;
     }
     
     
