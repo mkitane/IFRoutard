@@ -43,6 +43,18 @@ public class Devis {
     private Date dateCreation;
     
     private Integer nbPersonnes;
+
+    public Devis() {
+    }
+
+    public Devis(Depart ConditionsDepart, Voyage voyage, Conseiller conseiller, Client client, Date dateCreation, Integer nbPersonnes) {
+        this.ConditionsDepart = ConditionsDepart;
+        this.voyage = voyage;
+        this.conseiller = conseiller;
+        this.client = client;
+        this.dateCreation = dateCreation;
+        this.nbPersonnes = nbPersonnes;
+    }
     
     
     

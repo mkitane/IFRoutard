@@ -6,6 +6,7 @@ package vue;
 
 import java.util.Date;
 import java.util.List;
+import metier.modele.Devis;
 import metier.modele.Circuit;
 import metier.modele.Client;
 import metier.modele.Conseiller;
@@ -13,6 +14,9 @@ import metier.modele.Depart;
 import metier.modele.Pays;
 import metier.modele.Sejour;
 import metier.service.Service;
+import metier.modele.Voyage;
+
+
 
 /**
  *
@@ -26,7 +30,7 @@ public class Main {
        Client e = new Client(); 
        Client a = new Client( "mr","escure", "thomas", d, "france","06","monmail",true,"mdp"); 
        Client c = new Client( "mr","kitane", "mehdi", d, "france","06","monmail",true,"mdp"); 
-
+       
        
        Service.ajouterClient(e);
        Service.ajouterClient(a);
@@ -65,5 +69,10 @@ public class Main {
         
         Conseiller a1 = new Conseiller("Mr","Kar","Ben",d,"adresse","tel","email","mdp"); 
         Service.ajouterConseiller(a1);
+        
+        
+        
+        Devis dev = new Devis(d1, s, a1, a, d, 3);
+        //PROBLEME ICI    Service.ajouterDevis(dev);
     }
 }

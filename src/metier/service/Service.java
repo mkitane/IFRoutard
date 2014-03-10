@@ -11,6 +11,7 @@ import dao.DepartDAO;
 import dao.JpaUtil;
 import dao.PaysDAO;
 import dao.SejourDAO;
+import dao.DevisDAO;
 import java.util.List;
 import metier.modele.Conseiller;
 import metier.modele.Circuit;
@@ -18,7 +19,7 @@ import metier.modele.Client;
 import metier.modele.Depart;
 import metier.modele.Pays;
 import metier.modele.Sejour;
-
+import metier.modele.Devis;
 
 /**
  *
@@ -148,6 +149,18 @@ public class Service {
 
     }
     
-    
+    ////-----------------------------Methodes Relatives aux Devis-------------------------------//
+
+    public static void ajouterDevis(Devis d){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       DevisDAO.persist(d);
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+    }
+
+
+
 }
 
