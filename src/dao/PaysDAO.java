@@ -36,7 +36,16 @@ public class PaysDAO {
         return (Pays) query.getSingleResult(); 
         
     } 
-    
+       public static Pays rechercherParNom(String nomPays){
+        
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query query = em.createQuery("SELECT e from Pays e where e.nom = :nomPays");
+        query.setParameter("nomPays", nomPays);
+   
+        
+        return (Pays) query.getSingleResult(); 
+        
+    } 
     public static List<Pays> obtenirPays(){
         EntityManager em = JpaUtil.obtenirEntityManager();
         Query query = em.createQuery("SELECT e from Pays e");

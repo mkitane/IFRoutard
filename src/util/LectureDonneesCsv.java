@@ -10,6 +10,13 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import metier.modele.Circuit;
+import metier.modele.Conseiller;
+import metier.modele.Depart;
+import metier.modele.Pays;
+import metier.modele.Sejour;
+import metier.service.Service;
 
 /**
  * La classe LectureDonneesCsv permet (comme son nom l'indique) la lecture de données CSV
@@ -190,18 +197,241 @@ public class LectureDonneesCsv {
         String region = descriptionPays[2];
         String capitale = descriptionPays[3];
         String langues = descriptionPays[4];
-        Integer superficie = Integer.parseInt(descriptionPays[5]);
+        Float superficie = Float.parseFloat(descriptionPays[5]);
         Float population = Float.parseFloat(descriptionPays[6]);
         String regime = descriptionPays[7];
         
-        System.out.println("Pays: "+  nom + " [" + code + "] (" + regime + "), Capitale: " + capitale + ", Région: " + region + ", Langues: " + langues + ", " + superficie + " km², " + population + " millions d'hbitants");
         
         // À implémenter...
-        //Pays pays = new Pays(code,nom,capitale,population,superficie,langues);
-        //System.out.println(pays);
-        //Service.creerPays(pays);
+        Pays pays = new Pays(nom,code,region,capitale,langues,superficie,population,regime);
+        System.out.println(pays);
+        Service.creerPays(pays);
         
     }
+    
+     /**
+     * Lit le fichier CSV, affiche son en-tête, puis appelle la création de Pays pour chaque ligne.
+     * @param limite Nombre maximum de lignes à lire ou -1 pour ne pas limiter
+     * @throws IOException 
+     */
+    public void lireDeparts(int limite) throws IOException {
+
+        String[] nextLine;
+
+         // En-tete du fichier CSV
+        nextLine = this.lecteurFichier.readNext();
+        afficherEnTeteCsv(nextLine);
+        
+        
+        // Lecture des lignes
+        while ((nextLine = this.lecteurFichier.readNext()) != null) {
+        
+            creerDepart(nextLine);
+            
+            // Limite (ou -1 si pas de limite)
+            if ( !(limite < 0) && (--limite < 1) ) {
+                break;
+            }
+        }
+
+    }
+    
+    /**
+     * Créée un Pays à partir de sa description.
+     * La superficie et la population sont notamment interpétées comme des nombres.
+     * @param descriptionClient Ligne du fichier CSV de Pays.
+     */
+    public void creerDepart(String[] descriptionDepart) {
+        
+        String codeVoyage = descriptionDepart[0];
+        Date dateDepart = parseDate(descriptionDepart[1]);
+        String villeDepart = descriptionDepart[2];
+        Integer tarif = Integer.parseInt(descriptionDepart[3]);
+        String transport = descriptionDepart[4];
+        
+        
+        // À implémenter...
+        Depart pays = new Depart(codeVoyage,dateDepart,villeDepart,tarif,transport);
+        System.out.println(pays);
+        Service.creerDepart(pays);
+        
+    }
+    
+    
+     /**
+     * Lit le fichier CSV, affiche son en-tête, puis appelle la création de Conseiller pour chaque ligne.
+     * @param limite Nombre maximum de lignes à lire ou -1 pour ne pas limiter
+     * @throws IOException 
+     */
+    public void lireConseillers(int limite) throws IOException {
+        String[] nextLine;
+
+         // En-tete du fichier CSV
+        nextLine = this.lecteurFichier.readNext();
+        afficherEnTeteCsv(nextLine);
+        
+        
+        // Lecture des lignes
+        while ((nextLine = this.lecteurFichier.readNext()) != null) {
+        
+            creerConseiller(nextLine);
+            
+            // Limite (ou -1 si pas de limite)
+            if ( !(limite < 0) && (--limite < 1) ) {
+                break;
+            }
+        }
+
+    }
+        
+    /**
+     * Créée un Conseiller à partir de sa description.
+     * La superficie et la population sont notamment interpétées comme des nombres.
+     * @param descriptionConseiller Ligne du fichier CSV de Pays.
+    */
+    public void creerConseiller(String[] descriptionConseiller){
+                    
+        String civilite = descriptionConseiller[0];
+        String nom = descriptionConseiller[1];
+        String prenom = descriptionConseiller[2];
+        Date dateNaissance = parseDate(descriptionConseiller[3]);
+        String adresse = descriptionConseiller[4];
+        String telephone = descriptionConseiller[5];
+        String email = descriptionConseiller[6];
+        
+        
+        Conseiller conseiller = new Conseiller(civilite,nom,prenom,dateNaissance,adresse,telephone,email); 
+        
+        for(int i=7 ; i <descriptionConseiller.length; i++){
+            String codePays = descriptionConseiller[i];
+            Pays pays = Service.rechercherPaysParCode(codePays);
+            conseiller.ajouterPaysSpecialisation(pays);
+        }
+        
+        
+       
+        System.out.println(conseiller);
+        Service.creerConseiller(conseiller);
+     }
+        
+  
+        
+        
+        
+        
+  /**
+     * Lit le fichier CSV, affiche son en-tête, puis appelle la création de Sejour pour chaque ligne.
+     * @param limite Nombre maximum de lignes à lire ou -1 pour ne pas limiter
+     * @throws IOException 
+     */
+    public void lireSejours(int limite) throws IOException {
+        String[] nextLine;
+
+         // En-tete du fichier CSV
+        nextLine = this.lecteurFichier.readNext();
+        afficherEnTeteCsv(nextLine);
+        
+        
+        // Lecture des lignes
+        while ((nextLine = this.lecteurFichier.readNext()) != null) {
+        
+            creerSejour(nextLine);
+            
+            // Limite (ou -1 si pas de limite)
+            if ( !(limite < 0) && (--limite < 1) ) {
+                break;
+            }
+        }
+
+    }
+    
+    
+    
+          
+    /**
+     * Créée un Sejour à partir de sa description.
+     * La superficie et la population sont notamment interpétées comme des nombres.
+     * @param descriptionSejour Ligne du fichier CSV de Pays.
+    */
+    public void creerSejour(String[] descriptionSejour){
+                    
+        String codePays = descriptionSejour[0];
+        String codeVoyage = descriptionSejour[1];
+        String intitule = descriptionSejour[2];
+        Integer duree = Integer.parseInt(descriptionSejour[3]);
+        String description = descriptionSejour[4];
+        String residence = descriptionSejour[5];
+        
+        
+        Pays pays = Service.rechercherPaysParCode(codePays);
+        List<Depart> l = Service.rechercherDeparts(codeVoyage);
+
+        
+        Sejour sejour = new Sejour(residence,codeVoyage,intitule,duree,description);
+        sejour.ajouterPaysVoyage(pays);
+        sejour.setListeDeparts(l);
+        System.out.println(sejour);
+        Service.creerSejour(sejour);
+     }
+        
+    
+    
+     /**
+     * Lit le fichier CSV, affiche son en-tête, puis appelle la création de Circuit pour chaque ligne.
+     * @param limite Nombre maximum de lignes à lire ou -1 pour ne pas limiter
+     * @throws IOException 
+     */
+    public void lireCircuits(int limite) throws IOException {
+        String[] nextLine;
+
+         // En-tete du fichier CSV
+        nextLine = this.lecteurFichier.readNext();
+        afficherEnTeteCsv(nextLine);
+        
+        
+        // Lecture des lignes
+        while ((nextLine = this.lecteurFichier.readNext()) != null) {
+        
+            creerCircuit(nextLine);
+            
+            // Limite (ou -1 si pas de limite)
+            if ( !(limite < 0) && (--limite < 1) ) {
+                break;
+            }
+        }
+
+    }
+    
+    
+    
+          
+    /**
+     * Créée un Circuit à partir de sa description.
+     * La superficie et la population sont notamment interpétées comme des nombres.
+     * @param descriptionSejour Ligne du fichier CSV de Pays.
+    */
+    public void creerCircuit(String[] descriptionCircuit){
+                    
+        String codePays = descriptionCircuit[0];
+        String codeVoyage = descriptionCircuit[1];
+        String intitule = descriptionCircuit[2];
+        Integer duree = Integer.parseInt(descriptionCircuit[3]);
+        String description = descriptionCircuit[4];
+        String transport = descriptionCircuit[5];
+        Integer nbKms = Integer.parseInt(descriptionCircuit[6]);
+
+        
+        
+        Pays pays = Service.rechercherPaysParCode(codePays);
+        List<Depart> l = Service.rechercherDeparts(codeVoyage);
+        
+        Circuit circuit = new Circuit(transport,nbKms,codeVoyage,intitule,duree,description);
+        circuit.ajouterPaysVoyage(pays);
+        circuit.setListeDeparts(l);
+        System.out.println(circuit);
+        Service.creerCircuit(circuit);
+     }
+        
     
     /**
      * Cette méthode main() permet de tester cette classe avant de l'intégrer dans votre code.
@@ -209,30 +439,4 @@ public class LectureDonneesCsv {
      * 10 premiers éléments de chaque fichier.
      * @param args non utilisé ici
      */
-    public static void main(String[] args) {
-        
-        try {
-            String fichierClients = "C:\\Temp\\PredictIF-Clients.csv";
-            String fichierPays = "C:\\Temp\\IFRoutard-Pays.csv";
-            
-            LectureDonneesCsv lectureDonneesCsv_Clients = new LectureDonneesCsv(fichierClients);
-            
-            // Pour tester: limite à 10
-            lectureDonneesCsv_Clients.lireClients(10);
-            // Puis, quand tout est au point!
-            //lectureDonneesCsv.lireClients(-1);
-
-            lectureDonneesCsv_Clients.fermer();
-
-            LectureDonneesCsv lectureDonneesCsv_Pays = new LectureDonneesCsv(fichierPays);
-            
-            lectureDonneesCsv_Pays.lirePays(10);
-            
-            lectureDonneesCsv_Pays.fermer();
-            
-        } catch (IOException ex) {
-            ex.printStackTrace(System.err);
-        }
-
-    }
 }

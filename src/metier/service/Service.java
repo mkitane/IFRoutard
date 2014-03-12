@@ -28,7 +28,7 @@ import metier.modele.Devis;
 public class Service {
     //-----------------------------Methodes Relatives aux Clients-------------------------------//
 
-    public static void ajouterClient(Client c){
+    public static void creerClient(Client c){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
@@ -64,11 +64,12 @@ public class Service {
     
     //-----------------------------Methodes Relatives aux Sejours-------------------------------//
 
-    public static void ajouterSejour(Sejour s){
+    public static void creerSejour(Sejour s){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
        SejourDAO.persist(s);
+       //ajouter depart
        
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
@@ -76,12 +77,12 @@ public class Service {
     
     
      //-----------------------------Methodes Relatives aux Circuits-------------------------------//
-     public static void ajouterCircuit(Circuit c){
+     public static void creerCircuit(Circuit c){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
        CircuitDAO.persist(c);
-       
+       //ajouter depart 
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
     }
@@ -91,7 +92,7 @@ public class Service {
      
     //-----------------------------Methodes Relatives aux Pays-------------------------------//
 
-    public static void ajouterPays(Pays c){
+    public static void creerPays(Pays c){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
@@ -114,7 +115,7 @@ public class Service {
        return p; 
     }
     
-    public static List<Pays> obtenirPays(){
+    public static List<Pays> creerPays(){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
@@ -124,10 +125,10 @@ public class Service {
        JpaUtil.fermerEntityManager();
        return l; 
     }
-    
-    
+
+
     //-----------------------------Methodes Relatives aux Departs-------------------------------//
-    public static void ajouterDepart(Depart c){
+    public static void creerDepart(Depart c){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
@@ -137,13 +138,38 @@ public class Service {
        JpaUtil.fermerEntityManager();
     }
     
-    ////-----------------------------Methodes Relatives aux onseillers-------------------------------//
-
-    public static void ajouterConseiller(Conseiller c){
+    public static List<Depart> rechercherDeparts(String codeVoyage){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
+       
+       List<Depart> l = DepartDAO.rechercherParCode(codeVoyage);
+
+              
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return l; 
+    }
+    
+    public static List<Depart> obtenirDeparts(){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       List<Depart> l = DepartDAO.obtenirDeparts();
+
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return l; 
+    }
+    ////-----------------------------Methodes Relatives aux onseillers-------------------------------//
+
+    public static void creerConseiller(Conseiller c){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       //ajouter pays et ajouter 
        ConseillerDAO.persist(c);
+       
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
 
@@ -151,16 +177,20 @@ public class Service {
     
     ////-----------------------------Methodes Relatives aux Devis-------------------------------//
 
-    public static void ajouterDevis(Devis d){
+    public static void creerDevis(Devis d){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
        DevisDAO.persist(d);
+       
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
     }
 
 
 
+    public static void envoyerMails(){
+        
+    }
 }
 

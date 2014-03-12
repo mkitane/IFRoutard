@@ -19,8 +19,8 @@ public class Sejour extends Voyage{
         super();
     }
 
-    public Sejour(String Residence, String codeVoyage, String codePays, String intitule, String duree, String description) {
-        super(codeVoyage, codePays, intitule, duree, description);
+    public Sejour(String Residence, String codeVoyage, String intitule, int duree, String description) {
+        super(codeVoyage, intitule, duree, description);
         this.Residence = Residence;
     }
 

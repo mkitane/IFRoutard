@@ -4,6 +4,9 @@
  */
 package dao;
 
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import metier.modele.Conseiller;
 
 
@@ -24,5 +27,25 @@ public class ConseillerDAO {
     
     public static void remove(Conseiller c){
         JpaUtil.obtenirEntityManager().remove(c); 
+    }
+    
+    
+    public static Conseiller rechercherParID(int ID){
+        
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query query = em.createQuery("SELECT e from Conseiller e where e.id = :ID");
+        query.setParameter("ID", ID);
+        
+        return (Conseiller) query.getSingleResult(); 
+        
+    } 
+    
+    public static List<Conseiller> obtenirConseillers(){
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query query = em.createQuery("SELECT e from Conseiller e");
+        
+        List<Conseiller> list = query.getResultList();
+        
+        return list; 
     }
 }

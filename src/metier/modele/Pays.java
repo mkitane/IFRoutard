@@ -27,14 +27,14 @@ public class Pays {
     protected String region; 
     protected String capitale; 
     protected String langues; 
-    protected int superficie; 
-    protected double population; 
+    protected float superficie; 
+    protected float population; 
     protected String regimePolitique; 
 
     public Pays() {
     }
 
-    public Pays(String nom, String code, String region, String capitale, String langues, int superficie, double population, String regimePolitique) {
+    public Pays(String nom, String code, String region, String capitale, String langues, float superficie, float population, String regimePolitique) {
         this.nom = nom;
         this.code = code;
         this.region = region;
@@ -69,11 +69,11 @@ public class Pays {
         return langues;
     }
 
-    public int getSuperficie() {
+    public float getSuperficie() {
         return superficie;
     }
 
-    public double getPopulation() {
+    public float getPopulation() {
         return population;
     }
 

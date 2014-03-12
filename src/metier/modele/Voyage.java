@@ -31,9 +31,8 @@ public abstract class Voyage{
     protected String codeVoyage;
 
     
-    protected String codePays; 
     protected String intitule; 
-    protected String duree; 
+    protected int duree; 
     protected String description; 
 
     
@@ -49,31 +48,33 @@ public abstract class Voyage{
         
     }
     
-    public Voyage(String codeVoyage, String codePays, String intitule, String duree, String description) {
+    public Voyage(String codeVoyage, String intitule, int duree, String description) {
         this.codeVoyage = codeVoyage;
-        this.codePays = codePays;
         this.intitule = intitule;
         this.duree = duree;
         this.description = description;
     }
 
     public String toString() {
-        return "codeVoyage=" + codeVoyage + ", codePays=" + codePays + ", intitule=" + intitule + ", duree=" + duree + ", description=" + description ;
+        return "codeVoyage=" + codeVoyage + ", intitule=" + intitule + ", duree=" + duree + ", description=" + description ;
     }
 
+    public void setListeDeparts(List<Depart> listeDeparts) {
+        this.listeDeparts = listeDeparts;
+    }
+
+    public void ajouterPaysVoyage(Pays p){
+        paysVoyage = p ; 
+    }
     public String getCodeVoyage() {
         return codeVoyage;
-    }
-
-    public String getCodePays() {
-        return codePays;
     }
 
     public String getIntitule() {
         return intitule;
     }
 
-    public String getDuree() {
+    public int getDuree() {
         return duree;
     }
 

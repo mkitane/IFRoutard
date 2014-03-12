@@ -71,10 +71,14 @@ public class Client {
     }
     
     public void AjoutConseiller(Conseiller c){
-        
         listeConseiller.add(c);
     }
 
+    public void setListeConseiller(List<Conseiller> listeConseiller) {
+        this.listeConseiller = listeConseiller;
+    }
+
+    
     public String getCivilite() {
         return civilite;
     }

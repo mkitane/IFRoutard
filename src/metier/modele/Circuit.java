@@ -20,8 +20,8 @@ public class Circuit extends Voyage{
         super();
     }
 
-    public Circuit(String transport, int kmParcourus, String codeVoyage, String codePays, String intitule, String duree, String description) {
-        super(codeVoyage, codePays, intitule, duree, description);
+    public Circuit(String transport, int kmParcourus, String codeVoyage, String intitule, int duree, String description) {
+        super(codeVoyage, intitule, duree, description);
         this.transport = transport;
         this.kmParcourus = kmParcourus;
     }

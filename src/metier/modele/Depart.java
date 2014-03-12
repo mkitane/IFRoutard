@@ -34,6 +34,11 @@ public class Depart {
     protected int tarif; 
     protected String transport;
 
+    @Override
+    public String toString() {
+        return "Depart{" + "ID=" + ID + ", codeVoyage=" + codeVoyage + ", dateDepart=" + dateDepart + ", villeDepart=" + villeDepart + ", tarif=" + tarif + ", transport=" + transport + '}';
+    }
+
     
     
     public Depart() {

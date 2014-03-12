@@ -50,7 +50,7 @@ public class Conseiller {
     public Conseiller() {
     }
 
-    public Conseiller(String civilite,String nom, String prenom, Date dateNaissance, String adresse, String telephone, String email, String mdp) {
+    public Conseiller(String civilite,String nom, String prenom, Date dateNaissance, String adresse, String telephone, String email) {
         this.civilite = civilite;
         this.nom = nom;
         this.prenom = prenom;
@@ -58,14 +58,19 @@ public class Conseiller {
         this.adresse = adresse;
         this.telephone = telephone;
         this.email = email;
-        this.mdp = mdp;
     }
 
-    @Override
     public String toString() {
         return "Conseiller{" + "civilite=" + civilite + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance + ", adresse=" + adresse + ", telephone=" + telephone + ", email=" + email + ", mdp=" + mdp + '}';
     }
 
+    public void setPaysSpecialisation(List<Pays> paysSpecialisation) {
+        this.paysSpecialisation = paysSpecialisation;
+    }
+
+    public void ajouterPaysSpecialisation(Pays paysSpec){
+        paysSpecialisation.add(paysSpec);
+    }
     
     public String getCivilite() {
         return civilite;
