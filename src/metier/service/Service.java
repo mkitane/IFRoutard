@@ -20,6 +20,7 @@ import metier.modele.Pays;
 import metier.modele.Sejour;
 import metier.modele.Devis;
 import metier.modele.Voyage;
+import util.Aleatoire;
 
 /**
  *
@@ -81,6 +82,16 @@ public class Service {
        JpaUtil.ouvrirTransaction();
        
        Voyage v = VoyageDAO.rechercherParCode(ID);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return v; 
+    }
+    public static Voyage rechercherVoyage(String codeVoyage){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       Voyage v = VoyageDAO.rechercherVoyageParCodeVoyage(codeVoyage);
        
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
@@ -187,7 +198,7 @@ public class Service {
        JpaUtil.fermerEntityManager();
        return l; 
     }
-    ////-----------------------------Methodes Relatives aux onseillers-------------------------------//
+    ////-----------------------------Methodes Relatives aux Conseillers-------------------------------//
 
     public static void creerConseiller(Conseiller c){
        JpaUtil.creerEntityManager();
@@ -213,7 +224,7 @@ public class Service {
     }
     
     public static List<Conseiller> obtenirConseillers(){
-         JpaUtil.creerEntityManager();
+       JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
        List<Conseiller> l = ConseillerDAO.obtenirConseillers();
@@ -221,6 +232,45 @@ public class Service {
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
        return l;    
+    }
+    
+    public static Conseiller rechercherConseillerPourClientEtVoyage(Client c, Voyage v){       
+       Conseiller conseiller = null; 
+       
+       String codeVoyage = v.getCodeVoyage();
+       
+       //On donne de preference un conseiller que le client connait deja
+       List<Conseiller> l = c.getListeConseiller();
+       for(int i=0; i<l.size(); i++){
+           if(l.get(i).estConseillerPour(codeVoyage)){
+               conseiller = l.get(i);
+               break; 
+           }
+       }
+       
+       //Sinon on regarde un conseiller qui peut le conseiller sur ce pays
+       if(conseiller == null){
+            l = obtenirConseillers();
+            for(int i=0; i<l.size(); i++){
+               if(l.get(i).estConseillerPour(codeVoyage)){
+                   conseiller = l.get(i);
+                  break; 
+                }
+             }
+       
+            //Sinon on en prend aléatoirement
+             if(conseiller == null){
+                int conseillerID = Aleatoire.random(1141, 1178);
+                
+                conseiller = rechercherConseiller(conseillerID);             
+             }
+                  
+             c.AjoutConseiller(conseiller);
+
+       }
+       
+       
+       return conseiller;
     }
     ////-----------------------------Methodes Relatives aux Devis-------------------------------//
 

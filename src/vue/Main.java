@@ -82,7 +82,7 @@ public class Main {
        
       
         
-        
+        /*
         try {
             //String fichierClients = "/";
             //String fichierPays = "C:\\Temp\\IFRoutard-Pays.csv";
@@ -93,7 +93,9 @@ public class Main {
             String fichierSejours = "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Voyages-Sejours.csv";
             String fichierCircuits = "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Voyages-Circuits.csv";
             String fichierClients =  "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Clients.csv";
-            /*
+           
+            
+            
             LectureDonneesCsv lectureDonneesCsv_Pays = new LectureDonneesCsv(fichierPays);
             
             lectureDonneesCsv_Pays.lirePays(-1);
@@ -107,17 +109,14 @@ public class Main {
             
             lectureDonneesCsv_Departs.fermer();
             
-            */
-            
-            /*
+          
             LectureDonneesCsv lectureDonneesCsv_Conseillers = new LectureDonneesCsv(fichierConseillers);
             
             lectureDonneesCsv_Conseillers.lireConseillers(-1);
             
             lectureDonneesCsv_Conseillers.fermer();
-            */
-            
-            /*
+          
+          
             LectureDonneesCsv lectureDonneesCsv_Sejours = new LectureDonneesCsv(fichierSejours);
             
             lectureDonneesCsv_Sejours.lireSejours(-1);
@@ -131,15 +130,15 @@ public class Main {
             lectureDonneesCsv_Circuits.lireCircuits(-1);
             
             lectureDonneesCsv_Circuits.fermer();
-            */
             
-            System.out.println(Service.rechercherVoyage(2897));
+            
+            //System.out.println(Service.rechercherVoyage(2897));
 
             
-         
+            
             LectureDonneesCsv lectureDonneesCsv_Clients = new LectureDonneesCsv(fichierClients);
             
-            lectureDonneesCsv_Clients.lireClients(10);
+            lectureDonneesCsv_Clients.lireClients(-1);
             
             lectureDonneesCsv_Clients.fermer();
             
@@ -148,7 +147,12 @@ public class Main {
         } catch (IOException ex) {
             ex.printStackTrace(System.err);
         }
+        */
         
+        List<Client> l = Service.obtenirClients();
+        for(int i=0; i < l.size(); i++){
+            System.out.println(l.get(i));
+        }
         
     }
 }

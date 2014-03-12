@@ -56,6 +56,11 @@ public class Devis {
         this.nbPersonnes = nbPersonnes;
     }
 
+    public String toString() {
+        return "Devis{" + "ConditionsDepart=" + ConditionsDepart + "\n, voyage=" + voyage + "\n, conseiller=" + conseiller + "\n, client=" + client + "\n, dateCreation=" + dateCreation + "\n, nbPersonnes=" + nbPersonnes + '}';
+    }
+
+    
     public Depart getConditionsDepart() {
         return ConditionsDepart;
     }

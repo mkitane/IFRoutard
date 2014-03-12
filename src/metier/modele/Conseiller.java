@@ -64,6 +64,16 @@ public class Conseiller {
         return "Conseiller{" + "civilite=" + civilite + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance + ", adresse=" + adresse + ", telephone=" + telephone + ", email=" + email + ", mdp=" + mdp + '}';
     }
 
+    
+    public boolean estConseillerPour(String codeVoyage){
+        for(int i=0; i<paysSpecialisation.size();i++){
+            Pays p = paysSpecialisation.get(i);
+            if(codeVoyage.equals(p.getCode())){
+                return true;
+            }
+        }
+        return false;
+    }
     public void setPaysSpecialisation(List<Pays> paysSpecialisation) {
         this.paysSpecialisation = paysSpecialisation;
     }

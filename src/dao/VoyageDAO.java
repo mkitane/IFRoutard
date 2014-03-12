@@ -39,6 +39,15 @@ public class VoyageDAO {
         return (Voyage) query.getSingleResult(); 
         
     } 
+    
+    public static Voyage rechercherVoyageParCodeVoyage(String codeVoyage){
+         EntityManager em = JpaUtil.obtenirEntityManager();
+        Query query = em.createQuery("SELECT e from Voyage e where e.codeVoyage = :codeVoyage");
+        query.setParameter("codeVoyage", codeVoyage);
+   
+        
+        return (Voyage) query.getSingleResult(); 
+    }
     public static List<Voyage> obtenirSejours(){
         
         EntityManager em = JpaUtil.obtenirEntityManager();

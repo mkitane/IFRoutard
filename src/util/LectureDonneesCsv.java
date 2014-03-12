@@ -15,6 +15,7 @@ import metier.modele.Circuit;
 import metier.modele.Client;
 import metier.modele.Conseiller;
 import metier.modele.Depart;
+import metier.modele.Devis;
 import metier.modele.Pays;
 import metier.modele.Sejour;
 import metier.modele.Voyage;
@@ -151,7 +152,8 @@ public class LectureDonneesCsv {
         String telephone = descriptionClient[5];
         String email = descriptionClient[6];
         
-        System.out.println("Client: "+  civilite + " " + nom + " " + prenom + ", né le " + formatDate(dateNaissance) + ", habitant à " + adresse + ", téléphone: " + telephone + ", e-mail: " + email);
+        
+        String codeVoyage = descriptionClient[7];
         
         // À implémenter...
         Client client = new Client(civilite,nom,prenom,dateNaissance,adresse,telephone,email);
@@ -159,24 +161,21 @@ public class LectureDonneesCsv {
         Service.creerClient(client);
         
         
-        
+        creerDevisAleatoirePourClient(client,codeVoyage);
     }
 
-    public void creerDevisAleatoirePourClient(Client c)
+    public void creerDevisAleatoirePourClient(Client client,String voyageID)
     {
-          //Lui attribuer un Conseiller aléatoirement pour le test
-        int conseillerID = Aleatoire.random(1201, 1238);
-        Conseiller conseiller = Service.rechercherConseiller(conseillerID);
+                
+        Voyage voyage = Service.rechercherVoyage(voyageID);
         
-        /*
-        int voyageID = Aleatoire.random(1551, 1748);
-        Voyage s = Service.rechercherVoyage(voyageID);
+        Conseiller conseiller = Service.rechercherConseillerPourClientEtVoyage(client, voyage);
         
         
-        List<Depart> l = Service.rechercherDeparts(s.getCodeVoyage());
+        List<Depart> l = Service.rechercherDeparts(voyage.getCodeVoyage());
         
         int departID = Aleatoire.random(l.size());
-        Depart d = l.get(departID);
+        Depart depart = l.get(departID);
 
         Date dateCreation = new Date();
 
@@ -184,10 +183,11 @@ public class LectureDonneesCsv {
         int nbPersonnes = Aleatoire.random(2,5);
         
         
+
+        Devis d = new Devis(depart,voyage,conseiller,client,dateCreation,nbPersonnes); 
         
-        Devis d = new Devis(); 
-        */
-     
+        Service.creerDevis(d);
+       
     }
     /**
      * Lit le fichier CSV, affiche son en-tête, puis appelle la création de Pays pour chaque ligne.
