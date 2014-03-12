@@ -12,10 +12,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import metier.modele.Circuit;
+import metier.modele.Client;
 import metier.modele.Conseiller;
 import metier.modele.Depart;
 import metier.modele.Pays;
 import metier.modele.Sejour;
+import metier.modele.Voyage;
 import metier.service.Service;
 
 /**
@@ -152,12 +154,41 @@ public class LectureDonneesCsv {
         System.out.println("Client: "+  civilite + " " + nom + " " + prenom + ", né le " + formatDate(dateNaissance) + ", habitant à " + adresse + ", téléphone: " + telephone + ", e-mail: " + email);
         
         // À implémenter...
-        //Client client = new Client(civilite,nom,prenom,dateNaissance,adresse,telephone,email);
-        //System.out.println(client);
-        //Service.creerClient(client);
+        Client client = new Client(civilite,nom,prenom,dateNaissance,adresse,telephone,email);
+        System.out.println(client);
+        Service.creerClient(client);
+        
+        
         
     }
 
+    public void creerDevisAleatoirePourClient(Client c)
+    {
+          //Lui attribuer un Conseiller aléatoirement pour le test
+        int conseillerID = Aleatoire.random(1201, 1238);
+        Conseiller conseiller = Service.rechercherConseiller(conseillerID);
+        
+        /*
+        int voyageID = Aleatoire.random(1551, 1748);
+        Voyage s = Service.rechercherVoyage(voyageID);
+        
+        
+        List<Depart> l = Service.rechercherDeparts(s.getCodeVoyage());
+        
+        int departID = Aleatoire.random(l.size());
+        Depart d = l.get(departID);
+
+        Date dateCreation = new Date();
+
+        
+        int nbPersonnes = Aleatoire.random(2,5);
+        
+        
+        
+        Devis d = new Devis(); 
+        */
+     
+    }
     /**
      * Lit le fichier CSV, affiche son en-tête, puis appelle la création de Pays pour chaque ligne.
      * @param limite Nombre maximum de lignes à lire ou -1 pour ne pas limiter
@@ -371,7 +402,7 @@ public class LectureDonneesCsv {
         sejour.ajouterPaysVoyage(pays);
         sejour.setListeDeparts(l);
         System.out.println(sejour);
-        Service.creerSejour(sejour);
+        Service.creerVoyage(sejour);
      }
         
     
@@ -429,7 +460,7 @@ public class LectureDonneesCsv {
         circuit.ajouterPaysVoyage(pays);
         circuit.setListeDeparts(l);
         System.out.println(circuit);
-        Service.creerCircuit(circuit);
+        Service.creerVoyage(circuit);
      }
         
     

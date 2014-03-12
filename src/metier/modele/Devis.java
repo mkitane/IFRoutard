@@ -55,6 +55,30 @@ public class Devis {
         this.dateCreation = dateCreation;
         this.nbPersonnes = nbPersonnes;
     }
+
+    public Depart getConditionsDepart() {
+        return ConditionsDepart;
+    }
+
+    public Voyage getVoyage() {
+        return voyage;
+    }
+
+    public Conseiller getConseiller() {
+        return conseiller;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public Integer getNbPersonnes() {
+        return nbPersonnes;
+    }
     
     
     

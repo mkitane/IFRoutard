@@ -23,9 +23,9 @@ import javax.persistence.OneToOne;
 @Inheritance (strategy = InheritanceType.JOINED)
 public abstract class Voyage{
     @Id   
-    @Column(name = "Code_Voyage")
+    @Column(name = "ID_Voyage")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected int ID; 
+    protected int id; 
     
     
     protected String codeVoyage;

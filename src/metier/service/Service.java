@@ -5,13 +5,12 @@
 package metier.service;
 
 import dao.ConseillerDAO;
-import dao.CircuitDAO;
 import dao.ClientDAO;
 import dao.DepartDAO;
 import dao.JpaUtil;
 import dao.PaysDAO;
-import dao.SejourDAO;
 import dao.DevisDAO;
+import dao.VoyageDAO;
 import java.util.List;
 import metier.modele.Conseiller;
 import metier.modele.Circuit;
@@ -20,6 +19,7 @@ import metier.modele.Depart;
 import metier.modele.Pays;
 import metier.modele.Sejour;
 import metier.modele.Devis;
+import metier.modele.Voyage;
 
 /**
  *
@@ -62,33 +62,59 @@ public class Service {
        return l; 
     }
     
-    //-----------------------------Methodes Relatives aux Sejours-------------------------------//
+    //-----------------------------Methodes Relatives aux Sejours et circuit-------------------------------//
 
-    public static void creerSejour(Sejour s){
+    public static void creerVoyage(Voyage s){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
-       SejourDAO.persist(s);
+       VoyageDAO.persist(s);
        //ajouter depart
        
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
     }
     
-    
-     //-----------------------------Methodes Relatives aux Circuits-------------------------------//
-     public static void creerCircuit(Circuit c){
+    public static Voyage rechercherVoyage(int ID){
+        
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
-       CircuitDAO.persist(c);
-       //ajouter depart 
+       Voyage v = VoyageDAO.rechercherParCode(ID);
+       
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
+       return v; 
     }
+     public static List<Voyage> obtenirVoyages(){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       List<Voyage> l = VoyageDAO.obtenirVoyages();
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return l; 
+     }
      
-    
-     
+     public static List<Voyage> obtenirVoyages(boolean circuit){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       
+       List<Voyage> l;
+        
+       if(circuit){
+           l= VoyageDAO.obtenirCircuits();
+       }else{
+           l= VoyageDAO.obtenirSejours();
+       }
+       
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return l; 
+     }
      
     //-----------------------------Methodes Relatives aux Pays-------------------------------//
 
@@ -175,6 +201,27 @@ public class Service {
 
     }
     
+    public static Conseiller rechercherConseiller(int ID){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       Conseiller c = ConseillerDAO.rechercherParID(ID);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return c; 
+    }
+    
+    public static List<Conseiller> obtenirConseillers(){
+         JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       List<Conseiller> l = ConseillerDAO.obtenirConseillers();
+
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return l;    
+    }
     ////-----------------------------Methodes Relatives aux Devis-------------------------------//
 
     public static void creerDevis(Devis d){
@@ -188,7 +235,11 @@ public class Service {
     }
 
 
-
+    
+    public static int calculerPrix(Devis d){
+        int prix = d.getNbPersonnes() * d.getConditionsDepart().getTarif(); 
+        return prix; 
+    }
     public static void envoyerMails(){
         
     }

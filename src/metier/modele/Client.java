@@ -51,7 +51,7 @@ public class Client {
         
     }
 
-    public Client(String civilite, String nom, String prenom, Date dateNaissance, String adresse, String telephone, String email, boolean accepte, String motDePasse) {
+    public Client(String civilite, String nom, String prenom, Date dateNaissance, String adresse, String telephone, String email) {
         this.civilite = civilite;
         this.nom = nom;
         this.prenom = prenom;
@@ -59,8 +59,6 @@ public class Client {
         this.adresse = adresse;
         this.telephone = telephone;
         this.email = email;
-        this.accepte = accepte;
-        this.motDePasse = motDePasse;
     }
     
   

@@ -80,6 +80,8 @@ public class Main {
         Service.creerDevis(dev);
         */
        
+      
+        
         
         try {
             //String fichierClients = "/";
@@ -131,6 +133,9 @@ public class Main {
             lectureDonneesCsv_Circuits.fermer();
             */
             
+            System.out.println(Service.rechercherVoyage(2897));
+
+            
          
             LectureDonneesCsv lectureDonneesCsv_Clients = new LectureDonneesCsv(fichierClients);
             
@@ -139,7 +144,7 @@ public class Main {
             lectureDonneesCsv_Clients.fermer();
             
             
-            
+           
         } catch (IOException ex) {
             ex.printStackTrace(System.err);
         }
