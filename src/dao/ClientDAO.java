@@ -35,23 +35,14 @@ public class ClientDAO {
         return (Client) query.getSingleResult(); 
         
     } 
-    
-    public static Client rechercherParNomEtPrenom(String nom){
-        EntityManager em = JpaUtil.obtenirEntityManager();
-        Query query = em.createQuery("SELECT e from Client e where e.nom = :nom");
-        query.setParameter("nom", nom);
+        
+    public static Client rechercherParEmail(String email){
+          EntityManager em = JpaUtil.obtenirEntityManager();
+        Query query = em.createQuery("SELECT e from Client e where e.email = :email");
+        query.setParameter("email", email);
         
         return (Client) query.getSingleResult(); 
     }
-    
-    public static Client rechercherParPrenom(String prenom){
-        EntityManager em = JpaUtil.obtenirEntityManager();
-        Query query = em.createQuery("SELECT e from Client e where e.prenom = :prenom");
-        query.setParameter("prenom", prenom);
-        
-        return (Client) query.getSingleResult(); 
-    }
-    
     
     public static List<Client> obtenirClients(){
         EntityManager em = JpaUtil.obtenirEntityManager();

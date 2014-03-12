@@ -52,6 +52,16 @@ public class Service {
        return c; 
     }
     
+    public static Client rechercherClientParEmail(String email){
+        JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       Client c = ClientDAO.rechercherParEmail(email);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return c; 
+    }
     public static List<Client> obtenirClients(){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
@@ -285,7 +295,32 @@ public class Service {
     }
 
 
+    public static List<Devis> obtenirDevis(){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       List<Devis> l = DevisDAO.obtenirDevis();
+
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       
+       return l;
+    }
     
+      public static List<Devis> rechercherDevis(Client c){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       List<Devis> l = DevisDAO.rechercherDevis(c);
+
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       
+       return l;
+    }
+      
     public static int calculerPrix(Devis d){
         int prix = d.getNbPersonnes() * d.getConditionsDepart().getTarif(); 
         return prix; 
