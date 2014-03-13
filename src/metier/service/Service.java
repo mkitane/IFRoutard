@@ -10,6 +10,7 @@ import dao.DepartDAO;
 import dao.JpaUtil;
 import dao.PaysDAO;
 import dao.DevisDAO;
+import dao.PartenaireCommercialDAO;
 import dao.VoyageDAO;
 import java.util.List;
 import metier.modele.Conseiller;
@@ -19,6 +20,7 @@ import metier.modele.Depart;
 import metier.modele.Pays;
 import metier.modele.Sejour;
 import metier.modele.Devis;
+import metier.modele.PartenaireCommercial;
 import metier.modele.Voyage;
 import util.Aleatoire;
 
@@ -303,6 +305,32 @@ public class Service {
        
        return conseiller;
     }
+    
+    ////----------------------Methodes Relatives aux Partenaires Commerciaux---------------------//
+        public static void creerPartenaireCommercial(PartenaireCommercial d){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       PartenaireCommercialDAO.persist(d);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+    }
+
+
+    public static List<PartenaireCommercial> obtenirPartenaireCommerciaux(){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       List<PartenaireCommercial> l = PartenaireCommercialDAO.obtenirPartenaireCommerciaux();
+
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       
+       return l;
+    }
+    
     ////-----------------------------Methodes Relatives aux Devis-------------------------------//
 
     public static void creerDevis(Devis d){
@@ -343,15 +371,17 @@ public class Service {
     }
       
     public static void envoyerMail(Client c){
-        String s = "Expediteur : ifroutard@ifroutard.com \n";
-        s += "Pour : " + "\n" ; 
-        s += "Sujet : nouveau client \n";
-        s += "Corps : \n";
-        s += "nom : " + c.getNom().toUpperCase() + "\n";
-        s += "prenom : " + c.getPrenom() +"\n"; 
-        s += "adresse mail : " + c.getEmail() +"\n";
+        for(PartenaireCommercial pC : Service.obtenirPartenaireCommerciaux()){
+            String s = "Expediteur : ifroutard@ifroutard.com \n";
+            s += "Pour : " + pC.getEmail() + "\n" ; 
+            s += "Sujet : nouveau client \n";
+            s += "Corps : \n";
+            s += "nom : " + c.getNom().toUpperCase() + "\n";
+            s += "prenom : " + c.getPrenom() +"\n"; 
+            s += "adresse mail : " + c.getEmail() +"\n";
         
-        System.out.println(s);
+            System.out.println(s);
+        }
     }
 }
 
