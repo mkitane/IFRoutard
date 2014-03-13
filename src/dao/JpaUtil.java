@@ -48,11 +48,11 @@ public class JpaUtil {
     }
 
     private static void log(String message) {
-        System.out.flush();
-        pause(5);
-        System.err.println(message);
-        System.err.flush();
-        pause(5);
+        //System.out.flush();
+        //pause(5);
+        //System.err.println(message);
+        //System.err.flush();
+        //pause(5);
     }
 
     ;

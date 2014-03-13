@@ -138,7 +138,7 @@ public class Main {
             
             LectureDonneesCsv lectureDonneesCsv_Clients = new LectureDonneesCsv(fichierClients);
             
-            lectureDonneesCsv_Clients.lireClients(300);
+            lectureDonneesCsv_Clients.lireClients(-1);
             
             lectureDonneesCsv_Clients.fermer();
             
@@ -147,8 +147,8 @@ public class Main {
         } catch (IOException ex) {
             ex.printStackTrace(System.err);
         }
-        */
         
+        */
       
         /*
         List<Devis> l = Service.obtenirDevis();
@@ -161,7 +161,20 @@ public class Main {
         //System.out.print(Service.rechercherDevis(Service.rechercherClientParID(2115)));
         
         
-        InscriptionInteractive i = new InscriptionInteractive();
-        i.menu();
+        //InscriptionInteractive i = new InscriptionInteractive();
+        //i.menu();
+        
+        List<Voyage> l = Service.obtenirVoyages(Service.rechercherPaysParCode("ALG"));
+        
+        for(int i=0; i < l.size(); i++){
+            System.out.println(l.get(i));
+        }
+        
+        
+        Voyage v = Service.rechercherVoyage(1);
+        System.out.println(v);
+        
+        Depart d = Service.rechercherDepartPetitPrix(v.getCodeVoyage());
+        System.out.println(d);
     }
 }

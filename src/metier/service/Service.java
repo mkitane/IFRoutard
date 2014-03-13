@@ -98,6 +98,8 @@ public class Service {
        JpaUtil.fermerEntityManager();
     }
     
+    
+
     public static Voyage rechercherVoyage(int ID){
         
        JpaUtil.creerEntityManager();
@@ -153,16 +155,12 @@ public class Service {
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
+       List<Voyage> v = VoyageDAO.rechercherVoyageParPays(p);
        
-       List<Voyage> l;
-       l=VoyageDAO.rechercherParPays(p);
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
-       return l; 
-             
-        
-     }
-     
+       return v; 
+    }
     //-----------------------------Methodes Relatives aux Pays-------------------------------//
 
     public static void creerPays(Pays c){
@@ -175,7 +173,16 @@ public class Service {
        JpaUtil.fermerEntityManager();
     }
      
-    
+    public static Pays rechercherPaysParNom(String nom){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       Pays p = PaysDAO.rechercherParNom(nom);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return p; 
+    }
      public static Pays rechercherPaysParCode(String codePays){
         
        JpaUtil.creerEntityManager();
@@ -224,6 +231,30 @@ public class Service {
        return l; 
     }
     
+    public static Depart rechercherDepartPetitPrix(String codeVoyage)
+    {
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       List<Depart> listDepart = DepartDAO.rechercherParCode(codeVoyage);
+       
+        Depart departMin;
+       if(listDepart.size() > 0){
+             departMin = listDepart.get(0);
+       }else{
+            departMin = null;
+       }
+       for(Depart d : listDepart){
+           if(d.getTarif() < departMin.getTarif()){
+               departMin = d; 
+           }
+       }
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       
+       return departMin; 
+    }
     public static List<Depart> obtenirDeparts(){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();

@@ -9,9 +9,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import metier.modele.Circuit;
+import metier.modele.Pays;
 import metier.modele.Sejour;
 import metier.modele.Voyage;
-import metier.modele.Pays;
 
 /**
  *
@@ -49,16 +49,17 @@ public class VoyageDAO {
         
         return (Voyage) query.getSingleResult(); 
     }
-    public static List<Voyage> rechercherParPays(Pays p){
-        
-        EntityManager em = JpaUtil.obtenirEntityManager();
-        Query query = em.createQuery("SELECT e from Voyage e where e.Pays = :p");
-        query.setParameter("p", p);
-        List<Voyage> list = query.getResultList();
-        return list;          
-        
-    } 
     
+    public static List<Voyage> rechercherVoyageParPays(Pays pays){
+         EntityManager em = JpaUtil.obtenirEntityManager();
+        Query query = em.createQuery("SELECT e from Voyage e where e.paysVoyage = :pays");
+        query.setParameter("pays", pays);
+   
+        
+        List<Voyage> list = query.getResultList();
+        return list;
+    }
+      
     public static List<Voyage> obtenirSejours(){
         
         EntityManager em = JpaUtil.obtenirEntityManager();
