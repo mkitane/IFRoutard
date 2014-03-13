@@ -233,6 +233,17 @@ public class Service {
        return c; 
     }
     
+    public static List<Conseiller> rechercherConseiller(Pays p){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       List<Conseiller> c = ConseillerDAO.rechercherParPays(p);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return c; 
+    }
+    
     public static List<Conseiller> obtenirConseillers(){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
@@ -270,9 +281,9 @@ public class Service {
        
             //Sinon on en prend aléatoirement
              if(conseiller == null){
-                int conseillerID = Aleatoire.random(1141, 1178);
+                int conseillerID = Aleatoire.random(l.size());
                 
-                conseiller = rechercherConseiller(conseillerID);             
+                conseiller = l.get(conseillerID);             
              }
                   
              c.AjoutConseiller(conseiller);
@@ -321,10 +332,6 @@ public class Service {
        return l;
     }
       
-    public static int calculerPrix(Devis d){
-        int prix = d.getNbPersonnes() * d.getConditionsDepart().getTarif(); 
-        return prix; 
-    }
     public static void envoyerMails(){
         
     }

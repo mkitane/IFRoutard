@@ -44,6 +44,7 @@ public class Devis {
     
     private Integer nbPersonnes;
 
+    
     public Devis() {
     }
 
@@ -56,8 +57,13 @@ public class Devis {
         this.nbPersonnes = nbPersonnes;
     }
 
+    
+    public int getPrix(){
+        return this.getNbPersonnes() * this.getConditionsDepart().getTarif(); 
+
+    }
     public String toString() {
-        return "Devis{" + "ConditionsDepart=" + ConditionsDepart + "\n, voyage=" + voyage + "\n, conseiller=" + conseiller + "\n, client=" + client + "\n, dateCreation=" + dateCreation + "\n, nbPersonnes=" + nbPersonnes + '}';
+        return "Devis{" + "ConditionsDepart=" + ConditionsDepart + "\n, voyage=" + voyage + "\n, conseiller=" + conseiller + "\n, client=" + client + "\n, dateCreation=" + dateCreation + "\n, nbPersonnes=" + nbPersonnes + "\n, prix=" + getPrix() +'}';
     }
 
     

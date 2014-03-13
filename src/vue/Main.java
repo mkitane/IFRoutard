@@ -155,7 +155,12 @@ public class Main {
             System.out.println(l.get(i));
         }
         */
-        System.out.print(Service.rechercherDevis(Service.rechercherClientParID(2115)));
         
+        
+        //System.out.print(Service.rechercherDevis(Service.rechercherClientParID(2115)));
+        
+        
+        InscriptionInteractive i = new InscriptionInteractive();
+        i.demanderDevis();
     }
 }

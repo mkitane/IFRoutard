@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import metier.modele.Conseiller;
+import metier.modele.Pays;
 
 
 
@@ -40,6 +41,16 @@ public class ConseillerDAO {
         
     } 
     
+    public static List<Conseiller> rechercherParPays(Pays pays){
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query query = em.createQuery("SELECT e from Conseiller e where :pays Member Of e.paysSpecialisation",Conseiller.class);
+        query.setParameter("pays", pays);
+        
+        List<Conseiller> list = query.getResultList();
+
+        return list; 
+        
+    }
     public static List<Conseiller> obtenirConseillers(){
         EntityManager em = JpaUtil.obtenirEntityManager();
         Query query = em.createQuery("SELECT e from Conseiller e");
