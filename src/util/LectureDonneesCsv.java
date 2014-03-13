@@ -188,6 +188,8 @@ public class LectureDonneesCsv {
         
         Service.creerDevis(d);
        
+        client.AjoutConseiller(conseiller); 
+        Service.updateClient(client);
     }
     /**
      * Lit le fichier CSV, affiche son en-tête, puis appelle la création de Pays pour chaque ligne.

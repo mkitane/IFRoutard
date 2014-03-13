@@ -29,6 +29,40 @@ public class InscriptionInteractive {
     public InscriptionInteractive(){
         
     }
+    
+    public void menu(){
+        
+        boolean quitter = false; 
+        
+        
+        while(!quitter){
+             System.out.println("********************************************");
+             System.out.println("Bienvenue dans le Menu de Saisie interactive");
+             System.out.println("********************************************");
+        
+        
+             List<Integer> list = new ArrayList<Integer>();
+            list.add(1); 
+            list.add(2);
+            list.add(3);
+            Integer choix = Saisie.lireInteger("1- Creer un client \n2- Creer un devis \n3- Quitter \n", list);
+
+            switch(choix){
+                case 1:
+                   demanderInscriptionClient();
+                  break;
+                case 2: 
+                   demanderDevis();
+                   break; 
+                case 3: 
+                  quitter = true;
+                   break;
+                default:
+                  break;
+             }
+        }
+    }
+    
     public void demanderInscriptionClient(){
         System.out.println("**********************************************");
         System.out.println("Bienvenue dans le menu de création d'un client");
@@ -117,6 +151,7 @@ public class InscriptionInteractive {
        
        
        client.AjoutConseiller(conseiller); //A faire ? 
+       Service.updateClient(client);
        
     }
     

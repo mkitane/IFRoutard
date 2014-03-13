@@ -61,7 +61,7 @@ public class Conseiller {
     }
 
     public String toString() {
-        return "Conseiller{" + "civilite=" + civilite + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance + ", adresse=" + adresse + ", telephone=" + telephone + ", email=" + email + ", mdp=" + mdp + '}';
+        return ("Conseiller: "+  civilite + " " + nom + " " + prenom + ", né le " + dateNaissance + ", habitant à " + adresse + ", téléphone: " + telephone + ", e-mail: " + email);
     }
 
     

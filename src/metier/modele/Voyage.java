@@ -66,6 +66,14 @@ public abstract class Voyage{
     public void ajouterPaysVoyage(Pays p){
         paysVoyage = p ; 
     }
+
+    public int getId() {
+        return id;
+    }
+    
+    
+    
+    
     public String getCodeVoyage() {
         return codeVoyage;
     }

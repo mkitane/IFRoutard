@@ -161,6 +161,6 @@ public class Main {
         
         
         InscriptionInteractive i = new InscriptionInteractive();
-        i.demanderDevis();
+        i.menu();
     }
 }

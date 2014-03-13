@@ -39,6 +39,16 @@ public class Service {
        JpaUtil.fermerEntityManager();
     }
     
+    public static void updateClient(Client c){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       ClientDAO.merge(c);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+    }
+    
     
     public static Client rechercherClientParID(int ID){
         
@@ -332,8 +342,16 @@ public class Service {
        return l;
     }
       
-    public static void envoyerMails(){
+    public static void envoyerMail(Client c){
+        String s = "Expediteur : ifroutard@ifroutard.com \n";
+        s += "Pour : " + "\n" ; 
+        s += "Sujet : nouveau client \n";
+        s += "Corps : \n";
+        s += "nom : " + c.getNom().toUpperCase() + "\n";
+        s += "prenom : " + c.getPrenom() +"\n"; 
+        s += "adresse mail : " + c.getEmail() +"\n";
         
+        System.out.println(s);
     }
 }
 
