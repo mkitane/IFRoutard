@@ -42,20 +42,38 @@ public class InscriptionInteractive {
         
         
              List<Integer> list = new ArrayList<Integer>();
+            list.add(0);
             list.add(1); 
             list.add(2);
             list.add(3);
-            Integer choix = Saisie.lireInteger("1- Creer un client \n2- Creer un devis \n3- Quitter \n", list);
+            list.add(4);
+            list.add(5);
+            list.add(6);
+            Integer choix = Saisie.lireInteger("0- Afficher tous les clients \n1- Creer un client \n2- Creer un devis"
+                    + " \n3- Afficher tous les devis \n4- Afficher le dernier devis cree"
+                    + " \n5- Afficher tous les devis avec leur clients associés \n6- Quitter \n", list);
 
             switch(choix){
+                case 0: 
+                   afficherClients();
+                   break;
                 case 1:
                    demanderInscriptionClient();
-                  break;
+                   break;
                 case 2: 
                    demanderDevis();
                    break; 
                 case 3: 
-                  quitter = true;
+                   afficherDevis();
+                   break;
+                case 4:
+                   afficherDernierDevis();
+                   break;
+                case 5:
+                    afficherDevisEtClient();
+                    break;
+                case 6: 
+                   quitter = true;
                    break;
                 default:
                   break;
@@ -63,6 +81,43 @@ public class InscriptionInteractive {
         }
     }
     
+    
+    public void afficherDevisEtClient(){
+        List<Devis> list= Service.obtenirDevis();
+        for(Devis d : list){
+            Client c = d.getClient();
+            List<Conseiller> listConseiller = c.getListeConseiller();
+            
+            System.out.println(d);
+            System.out.println("Pour ce devis le client est " + c);
+            System.out.print("Sa liste de conseiller est : \n    ");
+            for(Conseiller cons : listConseiller){
+                System.out.print(cons + "\n    ");
+            }
+            
+        }
+    }
+    public void afficherClients(){
+        List<Client> list = Service.obtenirClients();
+        for(Client c : list){
+            System.out.println(c);
+        }
+    }
+    
+    public void afficherDevis()
+    {
+        List<Devis> list = Service.obtenirDevis();
+        for(Devis d : list){
+            System.out.println();
+            System.out.println(d);
+            System.out.println();
+        }
+    }
+    public void afficherDernierDevis()
+    {
+        List<Devis> list = Service.obtenirDevis();
+        System.out.println(list.get(list.size()-1));
+    }
     public void demanderInscriptionClient(){
         System.out.println("**********************************************");
         System.out.println("Bienvenue dans le menu de création d'un client");
