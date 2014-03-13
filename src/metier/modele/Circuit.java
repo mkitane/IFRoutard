@@ -27,7 +27,24 @@ public class Circuit extends Voyage{
     }
 
     public String toString() {
-        return "Circuit{" + super.toString() + "transport=" + transport + ", kmParcourus=" + kmParcourus + '}';
+         String s = "";
+         
+        s += "****[" + super.getId() + "] " + super.getIntitule() + "\n";
+        s += "Circuit, "+ super.getDuree()+" jours"  + "\n";
+        s += super.getDescription()  + "\n";
+        s += "\n";
+        s += "*Fiche voyage"  + "\n";
+        s += "Transport :" + getTransport()  + "\n";
+        s += "Nombre de kms parcourus : " + getKmParcourus() + " km"  + "\n";
+        s += "\n";
+        s += "*Periodes et tarifs"  + "\n";
+        for(int i=0; i<listeDeparts.size(); i++)
+            s += listeDeparts.get(i);
+        
+        
+        s += "\n";
+        
+        return s;
     }
 
     public String getTransport() {

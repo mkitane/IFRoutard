@@ -24,7 +24,7 @@ import javax.persistence.OneToOne;
 public abstract class Voyage{
     @Id   
     @Column(name = "ID_Voyage")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id; 
     
     
@@ -66,6 +66,14 @@ public abstract class Voyage{
     public void ajouterPaysVoyage(Pays p){
         paysVoyage = p ; 
     }
+
+    public int getId() {
+        return id;
+    }
+    
+    
+    
+    
     public String getCodeVoyage() {
         return codeVoyage;
     }

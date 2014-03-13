@@ -23,11 +23,11 @@ public class Devis {
     
     @Id   
     @Column(name = "ID_DEVIS")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @ManyToOne
-    private Depart ConditionsDepart;
+    private Depart conditionsDepart;
     
     @ManyToOne
     private Voyage voyage;
@@ -44,11 +44,12 @@ public class Devis {
     
     private Integer nbPersonnes;
 
+    
     public Devis() {
     }
 
-    public Devis(Depart ConditionsDepart, Voyage voyage, Conseiller conseiller, Client client, Date dateCreation, Integer nbPersonnes) {
-        this.ConditionsDepart = ConditionsDepart;
+    public Devis(Depart conditionsDepart, Voyage voyage, Conseiller conseiller, Client client, Date dateCreation, Integer nbPersonnes) {
+        this.conditionsDepart = conditionsDepart;
         this.voyage = voyage;
         this.conseiller = conseiller;
         this.client = client;
@@ -56,13 +57,49 @@ public class Devis {
         this.nbPersonnes = nbPersonnes;
     }
 
+    
+    public int getPrix(){
+        return this.getNbPersonnes() * this.getConditionsDepart().getTarif(); 
+
+    }
     public String toString() {
-        return "Devis{" + "ConditionsDepart=" + ConditionsDepart + "\n, voyage=" + voyage + "\n, conseiller=" + conseiller + "\n, client=" + client + "\n, dateCreation=" + dateCreation + "\n, nbPersonnes=" + nbPersonnes + '}';
+        String s  = ""; 
+        s += "------------------------------------------------------------------------------------------------------------------------------\n";
+        s += "Date : "+ dateCreation + "\n";
+        s += client.getPrenom()+" "+client.getNom().toUpperCase() + "\n";
+        s += client.getAdresse() + "\n";
+        s += client.getTelephone() + "\n";
+        s +=  "\n";
+        s += "Votre conseiller pour ce voyage : "+conseiller.getPrenom()+" "+ conseiller.getNom()+" ("+conseiller.getEmail()+")" + "\n";
+        s +=  "\n";
+        s += "Votre voyage : "+voyage.getIntitule()+". "+voyage.getPaysVoyage().getNom().toUpperCase() + "\n";
+        if(voyage.getClass().getName().equals("metier.modele.Circuit")){
+            Circuit v = (Circuit) voyage;
+            s += "Circuit ("+v.getDuree()+" jours, "+v.getKmParcourus()+" kms, "+v.getTransport()+")" + "\n";
+        }else if(voyage.getClass().getName().equals("metier.modele.Sejour"))
+        {
+            Sejour sejour = (Sejour)voyage;
+            s += "Sejour ("+sejour.getDuree()+" jours, "+sejour.getResidence()+")" + "\n";
+        }
+        s += "\n";
+        s += "Depart : le "+conditionsDepart.getDateDepart()+" de "+conditionsDepart.getVilleDepart() + "\n";
+        s += "Transport aerien (susceptible d'etre modifie) : "+conditionsDepart.getTransport() + "\n";
+        s += "\n";
+        s += voyage.getDescription() + "\n";
+        s += "\n";
+        s += "---------------------------------------" + "\n";
+        s += "Nombre de personnes : "+getNbPersonnes() + "\n";
+        s += "Tarif par personne : "+conditionsDepart.getTarif() + "\n";
+        s += "TOTAL : "+ getPrix() + "\n";
+        
+        
+        return s; 
+                
     }
 
     
     public Depart getConditionsDepart() {
-        return ConditionsDepart;
+        return conditionsDepart;
     }
 
     public Voyage getVoyage() {

@@ -25,7 +25,22 @@ public class Sejour extends Voyage{
     }
 
     public String toString() {
-        return "Sejour{" + super.toString() + "Residence=" + Residence + '}';
+        String s = "";
+        s += "****[" + super.getId() + "] " + super.getIntitule() + "\n";
+        s += "Sejour, "+ super.getDuree()+" jours"  + "\n";
+        s += super.getDescription()  + "\n";
+        s += "\n";
+        s += "*Fiche voyage"  + "\n";
+        s += "Residence : " + getResidence()+ "\n" ;
+        s += "\n";
+        s += "*Periodes et tarifs"  + "\n";
+        for(int i=0; i<listeDeparts.size(); i++)
+            s += listeDeparts.get(i);
+        
+        
+        s += "\n";
+        
+        return s;
     }
 
     public String getResidence() {

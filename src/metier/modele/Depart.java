@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 public class Depart {
     @Id   
     @Column(name = "ID_Depart")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int ID; 
       
     protected String codeVoyage;
@@ -36,7 +36,10 @@ public class Depart {
 
     @Override
     public String toString() {
-        return "Depart{" + "ID=" + ID + ", codeVoyage=" + codeVoyage + ", dateDepart=" + dateDepart + ", villeDepart=" + villeDepart + ", tarif=" + tarif + ", transport=" + transport + '}';
+        String s = "";
+        s += "Au depart de "+getVilleDepart()+" le "+ getDateDepart()+"       Tarif : "+getTarif()+"  Transport aérien : "+getTransport()  + "\n";
+
+        return s;
     }
 
     

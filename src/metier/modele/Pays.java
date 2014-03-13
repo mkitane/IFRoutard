@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class Pays {
     @Id   
     @Column(name = "ID_Pays")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int ID; 
       
     protected String code;
@@ -46,7 +46,14 @@ public class Pays {
     }
 
     public String toString() {
-        return ("Pays: "+  nom + " [" + code + "] (" + regimePolitique + "), Capitale: " + capitale + ", Région: " + region + ", Langues: " + langues + ", " + superficie + " km², " + population + " millions d'hbitants");
+        String s = "";
+        s += "---------------------------------------------------------------------------------------------------" + "\n";
+        s += "Pays : " + getNom() + "\n";
+        s += getCapitale() + " (cap), " + getPopulation() + " hab., " + getSuperficie() + " km², langue officielle : " + getLangues() + "\n";
+        s += "---------------------------------------------------------------------------------------------------" + "\n"; 
+        s += "\n";
+        
+        return s;
     }
 
     public String getCode() {

@@ -10,6 +10,7 @@ import dao.DepartDAO;
 import dao.JpaUtil;
 import dao.PaysDAO;
 import dao.DevisDAO;
+import dao.PartenaireCommercialDAO;
 import dao.VoyageDAO;
 import java.util.List;
 import metier.modele.Conseiller;
@@ -19,6 +20,7 @@ import metier.modele.Depart;
 import metier.modele.Pays;
 import metier.modele.Sejour;
 import metier.modele.Devis;
+import metier.modele.PartenaireCommercial;
 import metier.modele.Voyage;
 import util.Aleatoire;
 
@@ -34,6 +36,16 @@ public class Service {
        JpaUtil.ouvrirTransaction();
        
        ClientDAO.persist(c);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+    }
+    
+    public static void updateClient(Client c){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       ClientDAO.merge(c);
        
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
@@ -221,12 +233,32 @@ public class Service {
        JpaUtil.fermerEntityManager();
 
     }
+     public static void updateConseiller(Conseiller c){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       ConseillerDAO.merge(c);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+    }
     
     public static Conseiller rechercherConseiller(int ID){
        JpaUtil.creerEntityManager();
        JpaUtil.ouvrirTransaction();
        
        Conseiller c = ConseillerDAO.rechercherParID(ID);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return c; 
+    }
+    
+    public static List<Conseiller> rechercherConseiller(Pays p){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       List<Conseiller> c = ConseillerDAO.rechercherParPays(p);
        
        JpaUtil.validerTransaction();
        JpaUtil.fermerEntityManager();
@@ -270,18 +302,46 @@ public class Service {
        
             //Sinon on en prend aléatoirement
              if(conseiller == null){
-                int conseillerID = Aleatoire.random(1141, 1178);
-                
-                conseiller = rechercherConseiller(conseillerID);             
+                int conseillerID = Aleatoire.random(l.size());
+                conseiller = l.get(conseillerID);             
              }
                   
              c.AjoutConseiller(conseiller);
+             conseiller.ajouterClient(c);
+             updateClient(c);
+             updateConseiller(conseiller);
 
        }
        
        
        return conseiller;
     }
+    
+    ////----------------------Methodes Relatives aux Partenaires Commerciaux---------------------//
+        public static void creerPartenaireCommercial(PartenaireCommercial d){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       PartenaireCommercialDAO.persist(d);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+    }
+
+
+    public static List<PartenaireCommercial> obtenirPartenaireCommerciaux(){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       List<PartenaireCommercial> l = PartenaireCommercialDAO.obtenirPartenaireCommerciaux();
+
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       
+       return l;
+    }
+    
     ////-----------------------------Methodes Relatives aux Devis-------------------------------//
 
     public static void creerDevis(Devis d){
@@ -321,12 +381,18 @@ public class Service {
        return l;
     }
       
-    public static int calculerPrix(Devis d){
-        int prix = d.getNbPersonnes() * d.getConditionsDepart().getTarif(); 
-        return prix; 
-    }
-    public static void envoyerMails(){
+    public static void envoyerMail(Client c){
+        for(PartenaireCommercial pC : Service.obtenirPartenaireCommerciaux()){
+            String s = "Expediteur : ifroutard@ifroutard.com \n";
+            s += "Pour : " + pC.getEmail() + "\n" ; 
+            s += "Sujet : nouveau client \n";
+            s += "Corps : \n";
+            s += "nom : " + c.getNom().toUpperCase() + "\n";
+            s += "prenom : " + c.getPrenom() +"\n"; 
+            s += "adresse mail : " + c.getEmail() +"\n";
         
+            System.out.println(s);
+        }
     }
 }
 
