@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 public class Depart {
     @Id   
     @Column(name = "ID_Depart")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int ID; 
       
     protected String codeVoyage;

@@ -138,7 +138,7 @@ public class Main {
             
             LectureDonneesCsv lectureDonneesCsv_Clients = new LectureDonneesCsv(fichierClients);
             
-            lectureDonneesCsv_Clients.lireClients(-1);
+            lectureDonneesCsv_Clients.lireClients(300);
             
             lectureDonneesCsv_Clients.fermer();
             
@@ -148,6 +148,7 @@ public class Main {
             ex.printStackTrace(System.err);
         }
         */
+        
       
         /*
         List<Devis> l = Service.obtenirDevis();

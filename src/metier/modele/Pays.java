@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class Pays {
     @Id   
     @Column(name = "ID_Pays")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int ID; 
       
     protected String code;

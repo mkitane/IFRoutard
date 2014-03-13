@@ -24,7 +24,7 @@ import javax.persistence.OneToOne;
 public abstract class Voyage{
     @Id   
     @Column(name = "ID_Voyage")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id; 
     
     

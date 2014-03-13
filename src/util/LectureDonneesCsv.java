@@ -187,10 +187,8 @@ public class LectureDonneesCsv {
         Devis d = new Devis(depart,voyage,conseiller,client,dateCreation,nbPersonnes); 
         
         Service.creerDevis(d);
-       
-        client.AjoutConseiller(conseiller); 
-        Service.updateClient(client);
     }
+    
     /**
      * Lit le fichier CSV, affiche son en-tête, puis appelle la création de Pays pour chaque ligne.
      * @param limite Nombre maximum de lignes à lire ou -1 pour ne pas limiter

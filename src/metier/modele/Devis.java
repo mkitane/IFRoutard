@@ -23,7 +23,7 @@ public class Devis {
     
     @Id   
     @Column(name = "ID_DEVIS")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @ManyToOne

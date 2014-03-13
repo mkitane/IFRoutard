@@ -233,6 +233,15 @@ public class Service {
        JpaUtil.fermerEntityManager();
 
     }
+     public static void updateConseiller(Conseiller c){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       ConseillerDAO.merge(c);
+       
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+    }
     
     public static Conseiller rechercherConseiller(int ID){
        JpaUtil.creerEntityManager();
@@ -294,11 +303,13 @@ public class Service {
             //Sinon on en prend aléatoirement
              if(conseiller == null){
                 int conseillerID = Aleatoire.random(l.size());
-                
                 conseiller = l.get(conseillerID);             
              }
                   
              c.AjoutConseiller(conseiller);
+             conseiller.ajouterClient(c);
+             updateClient(c);
+             updateConseiller(conseiller);
 
        }
        

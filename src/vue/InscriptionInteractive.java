@@ -16,6 +16,7 @@ import metier.modele.Client;
 import metier.modele.Conseiller;
 import metier.modele.Depart;
 import metier.modele.Devis;
+import metier.modele.Pays;
 import metier.modele.Voyage;
 import metier.service.Service;
 import util.Saisie;
@@ -92,9 +93,12 @@ public class InscriptionInteractive {
             System.out.println("Pour ce devis le client est " + c);
             System.out.print("Sa liste de conseiller est : \n    ");
             for(Conseiller cons : listConseiller){
-                System.out.print(cons + "\n    ");
+                System.out.print(cons + "\n    Liste pays : ");
+                for(Pays p : cons.getPaysSpecialisation()){
+                    System.out.print(p.getCode() + " ");
+                }
             }
-            
+            System.out.println();
         }
     }
     public void afficherClients(){
@@ -187,16 +191,10 @@ public class InscriptionInteractive {
        Depart depart = listDepart.get(departChoisi);
        
 
-       
-       afficher = "Veuillez choisir un conseiller \n\n"; 
-       List<Conseiller> listConseiller = Service.rechercherConseiller(voyage.getPaysVoyage());
-       for(int i=0; i<listConseiller.size(); i++){
-            afficher = afficher  + "n° : " + i + "  nom :  " + listConseiller.get(i).getNom()+ "\n"; 
-        }
-       Integer conseillerChoisi = Saisie.lireInteger(afficher);
-       Conseiller conseiller = listConseiller.get(conseillerChoisi);
-       
                
+       Conseiller conseiller = Service.rechercherConseillerPourClientEtVoyage(client, voyage);
+       System.out.println("Le conseiller qui vous a été attribué est : " + conseiller.getNom() + " " + conseiller.getPrenom());
+       
        
        Devis d = new Devis(depart,voyage,conseiller,client,dateCreation,nbPersonnes); 
        
@@ -204,9 +202,6 @@ public class InscriptionInteractive {
        Service.creerDevis(d);
        System.out.println(d);
        
-       
-       client.AjoutConseiller(conseiller); //A faire ? 
-       Service.updateClient(client);
        
     }
     

@@ -24,7 +24,7 @@ public class Client {
    
     @Id   
     @Column(name = "ID_CLIENT")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int ID; 
     
     protected String civilite; 
