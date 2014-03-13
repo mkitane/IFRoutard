@@ -149,6 +149,20 @@ public class Service {
        return l; 
      }
      
+     public static List<Voyage> obtenirVoyages(Pays p){
+       JpaUtil.creerEntityManager();
+       JpaUtil.ouvrirTransaction();
+       
+       
+       List<Voyage> l;
+       l=VoyageDAO.rechercherParPays(p);
+       JpaUtil.validerTransaction();
+       JpaUtil.fermerEntityManager();
+       return l; 
+             
+        
+     }
+     
     //-----------------------------Methodes Relatives aux Pays-------------------------------//
 
     public static void creerPays(Pays c){
