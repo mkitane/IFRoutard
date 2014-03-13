@@ -169,7 +169,7 @@ public class LectureDonneesCsv {
                 
         Voyage voyage = Service.rechercherVoyage(voyageID);
         
-        Conseiller conseiller = Service.rechercherConseillerPourClientEtVoyage(client, voyage);
+        Conseiller conseiller = Service.rechercherBonConseillerPourVoyage(voyage);
         
         
         List<Depart> l = Service.rechercherDeparts(voyage.getCodeVoyage());
@@ -187,6 +187,11 @@ public class LectureDonneesCsv {
         Devis d = new Devis(depart,voyage,conseiller,client,dateCreation,nbPersonnes); 
         
         Service.creerDevis(d);
+        
+        client.AjoutConseiller(conseiller);
+        conseiller.ajouterClient(client);
+        Service.updateClient(client);
+        Service.updateConseiller(conseiller);
     }
     
     /**

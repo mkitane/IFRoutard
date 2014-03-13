@@ -192,7 +192,7 @@ public class InscriptionInteractive {
        
 
                
-       Conseiller conseiller = Service.rechercherConseillerPourClientEtVoyage(client, voyage);
+       Conseiller conseiller = Service.rechercherBonConseillerPourVoyage(voyage);
        System.out.println("Le conseiller qui vous a été attribué est : " + conseiller.getNom() + " " + conseiller.getPrenom());
        
        
@@ -203,6 +203,10 @@ public class InscriptionInteractive {
        System.out.println(d);
        
        
+             client.AjoutConseiller(conseiller);
+             conseiller.ajouterClient(client);
+             Service.updateClient(client);
+             Service.updateConseiller(conseiller);
     }
     
     
