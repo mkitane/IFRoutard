@@ -4,6 +4,7 @@
  */
 package vue;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ import metier.modele.Devis;
 import metier.modele.Pays;
 import metier.modele.Voyage;
 import metier.service.Service;
+import util.LectureDonneesCsv;
 import util.Saisie;
 
 /**
@@ -50,9 +52,10 @@ public class InscriptionInteractive {
             list.add(4);
             list.add(5);
             list.add(6);
+            list.add(7);
             Integer choix = Saisie.lireInteger("0- Afficher tous les clients \n1- Creer un client \n2- Creer un devis"
                     + " \n3- Afficher tous les devis \n4- Afficher le dernier devis cree"
-                    + " \n5- Afficher tous les devis avec leur clients associés \n6- Quitter \n", list);
+                    + " \n5- Afficher tous les devis avec leur clients associés \n6- Charger Donnees \n7- Quitter \n", list);
 
             switch(choix){
                 case 0: 
@@ -74,6 +77,9 @@ public class InscriptionInteractive {
                     afficherDevisEtClient();
                     break;
                 case 6: 
+                    chargerTout();
+                    break;
+                case 7:
                    quitter = true;
                    break;
                 default:
@@ -83,6 +89,72 @@ public class InscriptionInteractive {
     }
     
     
+    public void chargerTout(){
+          try {
+            //String fichierClients = "/";
+            //String fichierPays = "C:\\Temp\\IFRoutard-Pays.csv";
+            
+            String fichierPays = "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Pays.csv"; 
+            String fichierDeparts = "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Departs.csv";
+            String fichierConseillers = "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Conseillers.csv";
+            String fichierSejours = "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Voyages-Sejours.csv";
+            String fichierCircuits = "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Voyages-Circuits.csv";
+            String fichierClients =  "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Clients.csv";
+           
+            
+            
+            LectureDonneesCsv lectureDonneesCsv_Pays = new LectureDonneesCsv(fichierPays);
+            
+            lectureDonneesCsv_Pays.lirePays(-1);
+            
+            lectureDonneesCsv_Pays.fermer();
+            
+                        
+            LectureDonneesCsv lectureDonneesCsv_Departs = new LectureDonneesCsv(fichierDeparts);
+            
+            lectureDonneesCsv_Departs.lireDeparts(-1);
+            
+            lectureDonneesCsv_Departs.fermer();
+            
+          
+            LectureDonneesCsv lectureDonneesCsv_Conseillers = new LectureDonneesCsv(fichierConseillers);
+            
+            lectureDonneesCsv_Conseillers.lireConseillers(-1);
+            
+            lectureDonneesCsv_Conseillers.fermer();
+          
+          
+            LectureDonneesCsv lectureDonneesCsv_Sejours = new LectureDonneesCsv(fichierSejours);
+            
+            lectureDonneesCsv_Sejours.lireSejours(-1);
+            
+            lectureDonneesCsv_Sejours.fermer();
+              
+            
+            
+            LectureDonneesCsv lectureDonneesCsv_Circuits = new LectureDonneesCsv(fichierCircuits);
+            
+            lectureDonneesCsv_Circuits.lireCircuits(-1);
+            
+            lectureDonneesCsv_Circuits.fermer();
+            
+            
+            //System.out.println(Service.rechercherVoyage(2897));
+
+            
+            
+            LectureDonneesCsv lectureDonneesCsv_Clients = new LectureDonneesCsv(fichierClients);
+            
+            lectureDonneesCsv_Clients.lireClients(-1);
+            
+            lectureDonneesCsv_Clients.fermer();
+            
+            
+           
+        } catch (IOException ex) {
+            ex.printStackTrace(System.err);
+        }
+    }
     public void afficherDevisEtClient(){
         List<Devis> list= Service.obtenirDevis();
         for(Devis d : list){
