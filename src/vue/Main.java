@@ -161,9 +161,11 @@ public class Main {
         //System.out.print(Service.rechercherDevis(Service.rechercherClientParID(2115)));
         
         
-        //InscriptionInteractive i = new InscriptionInteractive();
-        //i.menu();
+        InscriptionInteractive i = new InscriptionInteractive();
+        i.menu();
         
+        
+        /*
         List<Voyage> l = Service.obtenirVoyages(Service.rechercherPaysParCode("ALG"));
         
         for(int i=0; i < l.size(); i++){
@@ -176,5 +178,6 @@ public class Main {
         
         Depart d = Service.rechercherDepartPetitPrix(v.getCodeVoyage());
         System.out.println(d);
+        * */
     }
 }

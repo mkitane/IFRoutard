@@ -23,8 +23,6 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Inheritance (strategy = InheritanceType.JOINED)
-@Table(name="Voyage_Code", 
-       uniqueConstraints=@UniqueConstraint(columnNames={"codeVoyage"}))
 public abstract class Voyage{
     @Id   
     @Column(name = "ID_Voyage")

@@ -22,9 +22,6 @@ import javax.persistence.UniqueConstraint;
  * @author Mehdi
  */
 @Entity
-@Table(name="Client_Mail", 
-       uniqueConstraints=@UniqueConstraint(columnNames={"email"}))
-
 public class Client {
    
     @Id   

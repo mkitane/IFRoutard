@@ -22,10 +22,6 @@ import javax.persistence.UniqueConstraint;
  * @author Thomas
  */
 @Entity
-
-@Table(name="Conseiller_Mail", 
-       uniqueConstraints=@UniqueConstraint(columnNames={"email"}))
-
 public class Conseiller {
     // attributs privés
 

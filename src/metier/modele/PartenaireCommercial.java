@@ -19,8 +19,7 @@ import javax.persistence.UniqueConstraint;
  * @author Mehdi
  */
 @Entity
-@Table(name="Partenaire_Mail", 
-       uniqueConstraints=@UniqueConstraint(columnNames={"email"}))
+
 public class PartenaireCommercial {
 
     @Id   

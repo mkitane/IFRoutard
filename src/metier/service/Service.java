@@ -92,8 +92,7 @@ public class Service {
         }
     }
 
-    
-     /**
+    /**
      *
      * Methode statique qui supprime un client dans la base de donnée
      *
@@ -293,7 +292,7 @@ public class Service {
         }
     }
 
-     /**
+    /**
      *
      * Methode statique qui supprime un Voyage dans la base de donnée
      *
@@ -562,7 +561,7 @@ public class Service {
         }
     }
 
-     /**
+    /**
      *
      * Methode statique qui supprime un Pays dans la base de donnée
      *
@@ -753,7 +752,7 @@ public class Service {
         }
     }
 
-     /**
+    /**
      *
      * Methode statique qui supprime un Depart dans la base de donnée
      *
@@ -927,7 +926,7 @@ public class Service {
 
     }
 
-     /**
+    /**
      *
      * Methode statique qui supprime un Conseiller dans la base de donnée
      *
@@ -1104,8 +1103,9 @@ public class Service {
 
         //Sinon on en prend aléatoirement, Si il n'y a pas de conseiller pour ce pays
         if (l.isEmpty()) {
-            int conseillerID = Aleatoire.random(l.size());
-            conseiller = l.get(conseillerID);
+            List<Conseiller> listeConseillersTotaux = Service.obtenirConseillers();
+            int conseillerID = Aleatoire.random(listeConseillersTotaux.size());
+            conseiller = listeConseillersTotaux.get(conseillerID);
             return conseiller;
         }
 
@@ -1181,8 +1181,7 @@ public class Service {
         }
     }
 
-    
-     /**
+    /**
      *
      * Methode statique qui supprime un Partenaire Commercial dans la base de donnée
      *
@@ -1308,8 +1307,7 @@ public class Service {
         }
     }
 
-    
-     /**
+    /**
      *
      * Methode statique qui supprime un Devis dans la base de donnée
      *

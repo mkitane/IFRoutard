@@ -17,8 +17,6 @@ import javax.persistence.UniqueConstraint;
  * @author Mehdi
  */
 @Entity
-@Table(name="Pays_Code", 
-       uniqueConstraints=@UniqueConstraint(columnNames={"codePays"}))
 public class Pays {
     @Id   
     @Column(name = "ID_Pays")
