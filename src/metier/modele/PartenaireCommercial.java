@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /*
  * To change this template, choose Tools | Templates
@@ -17,6 +19,8 @@ import javax.persistence.Id;
  * @author Mehdi
  */
 @Entity
+@Table(name="Partenaire_Mail", 
+       uniqueConstraints=@UniqueConstraint(columnNames={"email"}))
 public class PartenaireCommercial {
 
     @Id   
@@ -25,6 +29,8 @@ public class PartenaireCommercial {
     protected int id; 
     
     protected String nomEntreprise;
+    
+    @Column(name = "email")
     protected String email; 
 
     public PartenaireCommercial() {

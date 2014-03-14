@@ -14,12 +14,17 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.*;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
         
 /**
  *
  * @author Mehdi
  */
 @Entity
+@Table(name="Client_Mail", 
+       uniqueConstraints=@UniqueConstraint(columnNames={"email"}))
+
 public class Client {
    
     @Id   
@@ -36,6 +41,9 @@ public class Client {
     
     protected String adresse; 
     protected String telephone; 
+    
+    
+    @Column(name = "email")
     protected String email; 
     
     

@@ -9,18 +9,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author Mehdi
  */
 @Entity
+@Table(name="Pays_Code", 
+       uniqueConstraints=@UniqueConstraint(columnNames={"codePays"}))
 public class Pays {
     @Id   
     @Column(name = "ID_Pays")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int ID; 
       
+    @Column(name = "codePays")
     protected String code;
         
     protected String nom; 

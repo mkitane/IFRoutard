@@ -12,14 +12,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 /**
  *
  * @author Thomas
  */
 @Entity
+
+@Table(name="Conseiller_Mail", 
+       uniqueConstraints=@UniqueConstraint(columnNames={"email"}))
+
 public class Conseiller {
     // attributs privés
 
@@ -36,6 +42,8 @@ public class Conseiller {
     
     protected String adresse; 
     protected String telephone; 
+    
+    @Column(name = "email")
     protected String email; 
     
     

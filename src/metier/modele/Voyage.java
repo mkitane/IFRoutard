@@ -15,19 +15,23 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 /**
  *
  * @author Mehdi
  */
 @Entity
 @Inheritance (strategy = InheritanceType.JOINED)
+@Table(name="Voyage_Code", 
+       uniqueConstraints=@UniqueConstraint(columnNames={"codeVoyage"}))
 public abstract class Voyage{
     @Id   
     @Column(name = "ID_Voyage")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id; 
     
-    
+    @Column(name = "codeVoyage")
     protected String codeVoyage;
 
     
