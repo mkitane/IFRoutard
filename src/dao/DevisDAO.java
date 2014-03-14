@@ -9,39 +9,51 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import metier.modele.Client;
 import metier.modele.Devis;
+
 /**
  *
  * @author Thomas
  */
 public class DevisDAO {
-    
-    public static void persist(Devis c){
-       JpaUtil.obtenirEntityManager().persist(c); 
+
+    public static void persist(Devis c) {
+        JpaUtil.obtenirEntityManager().persist(c);
     }
-    
-    public static void merge(Devis d){
-        JpaUtil.obtenirEntityManager().merge(d); 
+
+    public static void merge(Devis d) {
+        JpaUtil.obtenirEntityManager().merge(d);
     }
-    
-    public static void remove(Devis d){
-        JpaUtil.obtenirEntityManager().remove(d); 
+
+    public static void remove(Devis d) {
+        JpaUtil.obtenirEntityManager().remove(d);
     }
-    
-    public static List<Devis> obtenirDevis(){
+
+    public static List<Devis> obtenirDevis() {
         EntityManager em = JpaUtil.obtenirEntityManager();
         Query query = em.createQuery("SELECT e from Devis e");
-        
+
         List<Devis> list = query.getResultList();
-        
-        return list; 
+        try {
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+            return null;
+        }
+
     }
-    public static List<Devis> rechercherDevis(Client c){
+
+    public static List<Devis> rechercherDevis(Client c) {
         EntityManager em = JpaUtil.obtenirEntityManager();
         Query query = em.createQuery("SELECT e from Devis e where e.client = :client");
         query.setParameter("client", c);
 
         List<Devis> list = query.getResultList();
-        
-        return list; 
+
+        try {
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+            return null;
+        }
     }
 }

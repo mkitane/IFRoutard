@@ -14,37 +14,45 @@ import metier.modele.Depart;
  * @author Mehdi
  */
 public class DepartDAO {
-    public static void persist(Depart c){
-       JpaUtil.obtenirEntityManager().persist(c); 
+
+    public static void persist(Depart c) {
+        JpaUtil.obtenirEntityManager().persist(c);
     }
-    
-    public static void merge(Depart c){
-        JpaUtil.obtenirEntityManager().merge(c); 
+
+    public static void merge(Depart c) {
+        JpaUtil.obtenirEntityManager().merge(c);
     }
-    
-    public static void remove(Depart c){
-        JpaUtil.obtenirEntityManager().remove(c); 
+
+    public static void remove(Depart c) {
+        JpaUtil.obtenirEntityManager().remove(c);
     }
-    
-    public static List<Depart> rechercherParCode(String codeVoyage){
-        
+
+    public static List<Depart> rechercherParCode(String codeVoyage) {
+
         EntityManager em = JpaUtil.obtenirEntityManager();
         Query query = em.createQuery("SELECT e from Depart e where e.codeVoyage = :codeVoyage");
         query.setParameter("codeVoyage", codeVoyage);
-   
+
         List<Depart> list = query.getResultList();
 
-        return list; 
-        
-    } 
-  
-   public static List<Depart> obtenirDeparts(){
-        EntityManager em = JpaUtil.obtenirEntityManager();
-        Query query = em.createQuery("SELECT e from Depart e");
-        
-        List<Depart> list = query.getResultList();
-        
-        return list; 
+        try {
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+            return null;
+        }
     }
 
+    public static List<Depart> obtenirDeparts() {
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query query = em.createQuery("SELECT e from Depart e");
+
+        List<Depart> list = query.getResultList();
+        try {
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+            return null;
+        }
+    }
 }

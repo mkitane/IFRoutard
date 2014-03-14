@@ -14,26 +14,32 @@ import metier.modele.PartenaireCommercial;
  * @author Mehdi
  */
 public class PartenaireCommercialDAO {
-    
-    public static void persist(PartenaireCommercial c){
-       JpaUtil.obtenirEntityManager().persist(c); 
+
+    public static void persist(PartenaireCommercial c) {
+        JpaUtil.obtenirEntityManager().persist(c);
     }
-    
-    public static void merge(PartenaireCommercial d){
-        JpaUtil.obtenirEntityManager().merge(d); 
+
+    public static void merge(PartenaireCommercial d) {
+        JpaUtil.obtenirEntityManager().merge(d);
     }
-    
-    public static void remove(PartenaireCommercial d){
-        JpaUtil.obtenirEntityManager().remove(d); 
+
+    public static void remove(PartenaireCommercial d) {
+        JpaUtil.obtenirEntityManager().remove(d);
     }
-    
-    public static List<PartenaireCommercial> obtenirPartenaireCommerciaux(){
+
+    public static List<PartenaireCommercial> obtenirPartenaireCommerciaux() {
         EntityManager em = JpaUtil.obtenirEntityManager();
         Query query = em.createQuery("SELECT e from PartenaireCommercial e");
-        
+
         List<PartenaireCommercial> list = query.getResultList();
-        
-        return list; 
+
+
+        try {
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+            return null;
+        }
+
     }
 }
-
