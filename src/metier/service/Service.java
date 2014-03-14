@@ -846,17 +846,7 @@ public class Service {
             try {
                 JpaUtil.ouvrirTransaction();
 
-                List<Depart> listDepart = DepartDAO.rechercherParCode(codeVoyage);
-
-                if (!listDepart.isEmpty()) {
-                    departMin = listDepart.get(0);
-                }
-                for (Depart d : listDepart) {
-                    if (d.getTarif() < departMin.getTarif()) {
-                        departMin = d;
-                    }
-                }
-
+                departMin = DepartDAO.rechercherDepartPetitPrix(codeVoyage);
 
                 JpaUtil.validerTransaction();
             } catch (Exception e) {

@@ -43,6 +43,24 @@ public class DepartDAO {
         }
     }
 
+    public static Depart rechercherDepartPetitPrix(String codeVoyage) {
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query query = em.createQuery("SELECT p FROM Depart p WHERE p.tarif=(SELECT MIN(e.tarif) FROM Depart e where e.codeVoyage = :codeVoyage)");
+        query.setParameter("codeVoyage", codeVoyage);
+
+        List<Depart> list = query.getResultList();
+        try {
+            if (list.isEmpty()) {
+                throw new Exception();
+            }
+            return list.get(0);
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+            return null;
+        }
+
+    }
+
     public static List<Depart> obtenirDeparts() {
         EntityManager em = JpaUtil.obtenirEntityManager();
         Query query = em.createQuery("SELECT e from Depart e");
