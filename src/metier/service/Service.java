@@ -226,7 +226,21 @@ public class Service {
         return l;
     }
 
+    /**
+     * Methode qui permet de savoir si le mot de passe entré est bien le bon pour ce client
+     *
+     * @param c Client
+     * @param mdp mot de passe supposé
+     * @return vrai si bon mot de passe, faux sinon
+     */
+    public static boolean verifierMdpClient(Client c, String mdp) {
+        if (mdp.equals(c.getMotDePasse())) {
+            return true;
+        }
+        return false;
+    }
     //-----------------------------Methodes Relatives aux Sejours et circuit-------------------------------//
+
     /**
      *
      * Methode statique qui fait persister un voyage dans la base de donnée
@@ -789,7 +803,7 @@ public class Service {
      * @param codeVoyage code du voyage a rechercher
      * @return Liste des départs qui correspondent a ce voyage
      */
-    public static List<Depart> rechercherDeparts(String codeVoyage) {
+    public static List<Depart> obtenirDeparts(String codeVoyage) {
 
         List<Depart> l = null;
         try {
@@ -1026,7 +1040,7 @@ public class Service {
      * @param p Pays dont on cherche les conseillers
      * @return Liste des conseillers affectés à un pays particulier
      */
-    public static List<Conseiller> rechercherConseiller(Pays p) {
+    public static List<Conseiller> obtenirConseillers(Pays p) {
         List<Conseiller> c = null;
         try {
             JpaUtil.creerEntityManager();
@@ -1098,7 +1112,7 @@ public class Service {
 
 
         //on regarde un conseiller qui peut le conseiller sur ce pays
-        List<Conseiller> l = Service.rechercherConseiller(v.getPaysVoyage());
+        List<Conseiller> l = Service.obtenirConseillers(v.getPaysVoyage());
 
 
         //Sinon on en prend aléatoirement, Si il n'y a pas de conseiller pour ce pays
@@ -1120,7 +1134,21 @@ public class Service {
         return conseiller;
     }
 
+    /**
+     * Methode qui permet de savoir si le mot de passe entré est bien le bon pour ce conseiller
+     *
+     * @param c Conseiller
+     * @param mdp mot de passe supposé
+     * @return vrai si bon mot de passe, faux sinon
+     */
+    public static boolean verifierMdpConseiller(Conseiller c, String mdp) {
+        if (mdp.equals(c.getMdp())) {
+            return true;
+        }
+        return false;
+    }
     ////----------------------Methodes Relatives aux Partenaires Commerciaux---------------------//
+
     /**
      *
      * Methode statique qui fait persister un PartenaireCommercial dans la base de donnée
@@ -1261,19 +1289,26 @@ public class Service {
 
 
                 DevisDAO.persist(d);
-
                 JpaUtil.validerTransaction();
+                JpaUtil.fermerEntityManager();
+
+                d.getClient().ajoutConseiller(d.getConseiller());
+                d.getConseiller().ajouterClient(d.getClient());
+                Service.updateClient(d.getClient());
+                Service.updateConseiller(d.getConseiller());
+
             } catch (Exception e) {
                 e.printStackTrace(System.err);
                 JpaUtil.annulerTransaction();
-
-            } finally {
                 JpaUtil.fermerEntityManager();
 
+            } finally {
             }
         } catch (Exception e) {
             e.printStackTrace(System.err);
         }
+
+
     }
 
     /**
@@ -1375,7 +1410,7 @@ public class Service {
      * @param c Client dont on recherche les Devis
      * @return Liste des devis
      */
-    public static List<Devis> rechercherDevis(Client c) {
+    public static List<Devis> obtenirDevis(Client c) {
         List<Devis> l = null;
         try {
             JpaUtil.creerEntityManager();
@@ -1400,6 +1435,16 @@ public class Service {
         }
 
         return l;
+    }
+
+    /**
+     * Methode statique qui permet de calculer le prix d'un devis
+     *
+     * @param d Devis dont on veux calculer le prix
+     * @return prix du devis
+     */
+    public static int calculPrixDevis(Devis d) {
+        return d.getPrix();
     }
 
     /**

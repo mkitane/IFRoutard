@@ -54,6 +54,14 @@ public class Circuit extends Voyage{
     public int getKmParcourus() {
         return kmParcourus;
     }
+
+    public void setTransport(String transport) {
+        this.transport = transport;
+    }
+
+    public void setKmParcourus(int kmParcourus) {
+        this.kmParcourus = kmParcourus;
+    }
     
     
 }

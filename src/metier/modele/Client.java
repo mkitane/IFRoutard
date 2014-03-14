@@ -4,6 +4,7 @@
  */
 package metier.modele;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -65,23 +66,45 @@ public class Client {
         this.telephone = telephone;
         this.email = email;
     }
+
+    public Client(String civilite, String nom, String prenom, Date dateNaissance, String adresse, String telephone, String email, boolean accepte, String motDePasse) {
+        this.civilite = civilite;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.email = email;
+        this.accepte = accepte;
+        this.motDePasse = motDePasse;
+    }
     
   
    
     
     public String toString(){
-        return ("Client: "+  civilite + " " + nom + " " + prenom + ", né le " + dateNaissance + ", habitant à " + adresse + ", téléphone: " + telephone + ", e-mail: " + email);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+        return ("Client: "+  civilite + " " + nom + " " + prenom + ", né le " + formatter.format(dateNaissance)+ ", habitant à " + adresse + ", téléphone: " + telephone + ", e-mail: " + email);
     }
     
-    public void AjoutConseiller(Conseiller c){
+    public void ajoutConseiller(Conseiller c){
         listeConseiller.add(c);
     }
 
+    public void supprimerConseiller(Conseiller c){
+        listeConseiller.remove(c);
+    }
+    
+    
     public void setListeConseiller(List<Conseiller> listeConseiller) {
         this.listeConseiller = listeConseiller;
     }
 
-    
+    public int getID() {
+        return ID;
+    }
+
     public String getCivilite() {
         return civilite;
     }
@@ -122,6 +145,42 @@ public class Client {
         return listeConseiller;
     }
 
+    public void setCivilite(String civilite) {
+        this.civilite = civilite;
+    }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAccepte(boolean accepte) {
+        this.accepte = accepte;
+    }
+
+    public void setMotDePasse(String motDePasse) {
+        this.motDePasse = motDePasse;
+    }
+
+    
   
 }

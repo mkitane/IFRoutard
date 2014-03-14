@@ -139,8 +139,6 @@ public class InscriptionInteractive {
             lectureDonneesCsv_Circuits.fermer();
             
             
-            //System.out.println(Service.rechercherVoyage(2897));
-
             
             
             LectureDonneesCsv lectureDonneesCsv_Clients = new LectureDonneesCsv(fichierClients);
@@ -273,12 +271,7 @@ public class InscriptionInteractive {
        
        Service.creerDevis(d);
        System.out.println(d);
-       
-       
-             client.AjoutConseiller(conseiller);
-             conseiller.ajouterClient(client);
-             Service.updateClient(client);
-             Service.updateConseiller(conseiller);
+      
     }
     
     

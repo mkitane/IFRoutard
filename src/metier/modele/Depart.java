@@ -4,6 +4,7 @@
  */
 package metier.modele;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,8 +37,10 @@ public class Depart {
 
     @Override
     public String toString() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
         String s = "";
-        s += "Au depart de "+getVilleDepart()+" le "+ getDateDepart()+"       Tarif : "+getTarif()+"  Transport aérien : "+getTransport()  + "\n";
+        s += "Au depart de "+villeDepart+" le "+ formatter.format(dateDepart)+"       Tarif : "+tarif+"  Transport aérien : "+transport + "\n";
 
         return s;
     }
@@ -53,6 +56,11 @@ public class Depart {
         this.villeDepart = villeDepart;
         this.tarif = tarif;
         this.transport = transport;
+    }
+
+    
+    public int getID() {
+        return ID;
     }
 
     public String getCodeVoyage() {
@@ -74,6 +82,28 @@ public class Depart {
     public String getTransport() {
         return transport;
     }
+
+    public void setCodeVoyage(String codeVoyage) {
+        this.codeVoyage = codeVoyage;
+    }
+
+    public void setDateDepart(Date dateDepart) {
+        this.dateDepart = dateDepart;
+    }
+
+    public void setVilleDepart(String villeDepart) {
+        this.villeDepart = villeDepart;
+    }
+
+    public void setTarif(int tarif) {
+        this.tarif = tarif;
+    }
+
+    public void setTransport(String transport) {
+        this.transport = transport;
+    }
+
+  
     
     
     

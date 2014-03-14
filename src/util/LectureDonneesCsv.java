@@ -157,9 +157,9 @@ public class LectureDonneesCsv {
         
         // À implémenter...
         Client client = new Client(civilite,nom,prenom,dateNaissance,adresse,telephone,email);
-        System.out.println(client);
         Service.creerClient(client);
-        
+        System.out.println(client);
+
         
         creerDevisAleatoirePourClient(client,codeVoyage);
     }
@@ -172,7 +172,7 @@ public class LectureDonneesCsv {
         Conseiller conseiller = Service.rechercherBonConseillerPourVoyage(voyage);
         
         
-        List<Depart> l = Service.rechercherDeparts(voyage.getCodeVoyage());
+        List<Depart> l = Service.obtenirDeparts(voyage.getCodeVoyage());
         
         int departID = Aleatoire.random(l.size());
         Depart depart = l.get(departID);
@@ -187,11 +187,8 @@ public class LectureDonneesCsv {
         Devis d = new Devis(depart,voyage,conseiller,client,dateCreation,nbPersonnes); 
         
         Service.creerDevis(d);
+
         
-        client.AjoutConseiller(conseiller);
-        conseiller.ajouterClient(client);
-        Service.updateClient(client);
-        Service.updateConseiller(conseiller);
     }
     
     /**
@@ -240,9 +237,9 @@ public class LectureDonneesCsv {
         
         // À implémenter...
         Pays pays = new Pays(nom,code,region,capitale,langues,superficie,population,regime);
-        System.out.println(pays);
         Service.creerPays(pays);
-        
+        System.out.println(pays);
+
     }
     
      /**
@@ -287,10 +284,10 @@ public class LectureDonneesCsv {
         
         
         // À implémenter...
-        Depart pays = new Depart(codeVoyage,dateDepart,villeDepart,tarif,transport);
-        System.out.println(pays);
-        Service.creerDepart(pays);
-        
+        Depart depart = new Depart(codeVoyage,dateDepart,villeDepart,tarif,transport);
+        Service.creerDepart(depart);
+        System.out.println(depart);
+
     }
     
     
@@ -346,8 +343,10 @@ public class LectureDonneesCsv {
         
         
        
-        System.out.println(conseiller);
         Service.creerConseiller(conseiller);
+        
+        System.out.println(conseiller);
+
      }
         
   
@@ -400,14 +399,16 @@ public class LectureDonneesCsv {
         
         
         Pays pays = Service.rechercherPaysParCode(codePays);
-        List<Depart> l = Service.rechercherDeparts(codeVoyage);
+        List<Depart> l = Service.obtenirDeparts(codeVoyage);
 
         
         Sejour sejour = new Sejour(residence,codeVoyage,intitule,duree,description);
-        sejour.ajouterPaysVoyage(pays);
+        sejour.setPaysVoyage(pays);
         sejour.setListeDeparts(l);
-        System.out.println(sejour);
         Service.creerVoyage(sejour);
+        
+        System.out.println(sejour);
+
      }
         
     
@@ -459,13 +460,15 @@ public class LectureDonneesCsv {
         
         
         Pays pays = Service.rechercherPaysParCode(codePays);
-        List<Depart> l = Service.rechercherDeparts(codeVoyage);
+        List<Depart> l = Service.obtenirDeparts(codeVoyage);
         
         Circuit circuit = new Circuit(transport,nbKms,codeVoyage,intitule,duree,description);
-        circuit.ajouterPaysVoyage(pays);
+        circuit.setPaysVoyage(pays);
         circuit.setListeDeparts(l);
-        System.out.println(circuit);
         Service.creerVoyage(circuit);
+        
+        System.out.println(circuit);
+
      }
         
     

@@ -46,6 +46,11 @@ public class Sejour extends Voyage{
     public String getResidence() {
         return Residence;
     }
+
+    public void setResidence(String Residence) {
+        this.Residence = Residence;
+    }
  
+    
     
 }

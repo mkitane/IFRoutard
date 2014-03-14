@@ -4,6 +4,7 @@
  */
 package metier.modele;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -64,8 +65,23 @@ public class Conseiller {
         this.email = email;
     }
 
+    public Conseiller(String civilite, String nom, String prenom, Date dateNaissance, String adresse, String telephone, String email, String mdp) {
+        this.civilite = civilite;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.email = email;
+        this.mdp = mdp;
+    }
+    
+    
+
     public String toString() {
-        return ("Conseiller: "+  civilite + " " + nom + " " + prenom + ", né le " + dateNaissance + ", habitant à " + adresse + ", téléphone: " + telephone + ", e-mail: " + email);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+        return ("Conseiller: "+  civilite + " " + nom + " " + prenom + ", né le " + formatter.format(dateNaissance) + ", habitant à " + adresse + ", téléphone: " + telephone + ", e-mail: " + email);
     }
 
     
@@ -93,11 +109,24 @@ public class Conseiller {
     public void ajouterClient(Client client){
         listeClients.add(client);
     }
+    public void supprimerPaysSpecialisation(Pays paysSpec){
+        paysSpecialisation.remove(paysSpec);
+    }
     
+    public void supprimerClient(Client client){
+        listeClients.remove(client);
+    }
+    
+    
+
+    public Integer getId() {
+        return id;
+    }
+
     public String getCivilite() {
         return civilite;
     }
-      
+
     public String getNom() {
         return nom;
     }
@@ -134,6 +163,42 @@ public class Conseiller {
         return listeClients;
     }
 
+    public void setCivilite(String civilite) {
+        this.civilite = civilite;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+    
+   
+    
+    
+    
 
     
   

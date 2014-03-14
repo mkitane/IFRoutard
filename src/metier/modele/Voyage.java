@@ -57,25 +57,18 @@ public abstract class Voyage{
         this.description = description;
     }
 
-    public String toString() {
-        return "codeVoyage=" + codeVoyage + ", intitule=" + intitule + ", duree=" + duree + ", description=" + description ;
-    }
+    
 
     public void setListeDeparts(List<Depart> listeDeparts) {
         this.listeDeparts = listeDeparts;
     }
 
-    public void ajouterPaysVoyage(Pays p){
-        paysVoyage = p ; 
-    }
+
 
     public int getId() {
         return id;
     }
-    
-    
-    
-    
+
     public String getCodeVoyage() {
         return codeVoyage;
     }
@@ -99,6 +92,30 @@ public abstract class Voyage{
     public List<Depart> getListeDeparts() {
         return listeDeparts;
     }
+
+    public void setCodeVoyage(String codeVoyage) {
+        this.codeVoyage = codeVoyage;
+    }
+
+    public void setIntitule(String intitule) {
+        this.intitule = intitule;
+    }
+
+    public void setDuree(int duree) {
+        this.duree = duree;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPaysVoyage(Pays paysVoyage) {
+        this.paysVoyage = paysVoyage;
+    }
+
+  
+    
+    
     
     
 }

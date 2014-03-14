@@ -27,7 +27,7 @@ public class PartenaireCommercial {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected int id; 
     
-    protected String nomEntreprise;
+    protected String nom;
     
     @Column(name = "email")
     protected String email; 
@@ -36,9 +36,13 @@ public class PartenaireCommercial {
     }
 
     
-    public PartenaireCommercial(String nomEntreprise, String email) {
-        this.nomEntreprise = nomEntreprise;
+    public PartenaireCommercial(String nom, String email) {
+        this.nom = nom;
         this.email = email;
+    }
+
+    public String toString() {
+        return "PartenaireCommercial " + "nom=" + nom + ", email=" + email;
     }
 
     
@@ -46,24 +50,23 @@ public class PartenaireCommercial {
         return id;
     }
 
-    public String getNomEntreprise() {
-        return nomEntreprise;
+    public String getNom() {
+        return nom;
     }
 
     public String getEmail() {
         return email;
     }
 
-    
-    
-    public void setNomEntreprise(String nomEntreprise) {
-        this.nomEntreprise = nomEntreprise;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
+
     
-    
+  
     
 }

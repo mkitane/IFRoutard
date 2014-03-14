@@ -4,6 +4,7 @@
  */
 package metier.modele;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -63,9 +64,11 @@ public class Devis {
 
     }
     public String toString() {
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
         String s  = ""; 
         s += "------------------------------------------------------------------------------------------------------------------------------\n";
-        s += "Date : "+ dateCreation + "\n";
+        s += "Date : "+ formatter.format(dateCreation) + "\n";
         s += client.getPrenom()+" "+client.getNom().toUpperCase() + "\n";
         s += client.getAdresse() + "\n";
         s += client.getTelephone() + "\n";
@@ -88,7 +91,7 @@ public class Devis {
         s += voyage.getDescription() + "\n";
         s += "\n";
         s += "---------------------------------------" + "\n";
-        s += "Nombre de personnes : "+getNbPersonnes() + "\n";
+        s += "Nombre de personnes : "+nbPersonnes + "\n";
         s += "Tarif par personne : "+conditionsDepart.getTarif() + "\n";
         s += "TOTAL : "+ getPrix() + "\n";
         
@@ -97,7 +100,10 @@ public class Devis {
                 
     }
 
-    
+    public Integer getId() {
+        return id;
+    }
+
     public Depart getConditionsDepart() {
         return conditionsDepart;
     }
@@ -121,6 +127,34 @@ public class Devis {
     public Integer getNbPersonnes() {
         return nbPersonnes;
     }
+
+    public void setConditionsDepart(Depart conditionsDepart) {
+        this.conditionsDepart = conditionsDepart;
+    }
+
+    public void setVoyage(Voyage voyage) {
+        this.voyage = voyage;
+    }
+
+    public void setConseiller(Conseiller conseiller) {
+        this.conseiller = conseiller;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setDateCreation(Date dateCreation) {
+        this.dateCreation = dateCreation;
+    }
+
+    public void setNbPersonnes(Integer nbPersonnes) {
+        this.nbPersonnes = nbPersonnes;
+    }
+
+    
+   
+    
     
     
     
