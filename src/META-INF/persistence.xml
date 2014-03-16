@@ -10,6 +10,7 @@
     <class>metier.modele.Depart</class>
     <class>metier.modele.Conseiller</class>
     <class>metier.modele.Devis</class>
+    <class>metier.modele.PartenaireCommercial</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/IFRoutardDB"/>
       <property name="javax.persistence.jdbc.password" value="test"/>

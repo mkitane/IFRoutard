@@ -55,7 +55,7 @@ public class InscriptionInteractive {
             list.add(7);
             Integer choix = Saisie.lireInteger("0- Afficher tous les clients \n1- Creer un client \n2- Creer un devis"
                     + " \n3- Afficher tous les devis \n4- Afficher le dernier devis cree"
-                    + " \n5- Afficher tous les devis avec leur clients associés \n6- Charger Donnees \n7- Quitter \n", list);
+                    + " \n5- Afficher tous les clients avec un résumé de leur devis et leurs conseillers  \n6- Charger Donnees \n7- Quitter \n", list);
 
             switch(choix){
                 case 0: 
@@ -94,12 +94,12 @@ public class InscriptionInteractive {
             //String fichierClients = "/";
             //String fichierPays = "C:\\Temp\\IFRoutard-Pays.csv";
             
-            String fichierPays = "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Pays.csv"; 
-            String fichierDeparts = "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Departs.csv";
-            String fichierConseillers = "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Conseillers.csv";
-            String fichierSejours = "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Voyages-Sejours.csv";
-            String fichierCircuits = "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Voyages-Circuits.csv";
-            String fichierClients =  "/Users/Mehdi/Dropbox/Tps/DASI/data/IFRoutard-Clients.csv";
+            String fichierPays = "C:/Documents and Settings/Administrateur/Bureau/data/IFRoutard-Pays.csv"; 
+            String fichierDeparts = "C:/Documents and Settings/Administrateur/Bureau/data/IFRoutard-Departs.csv";
+            String fichierConseillers = "C:/Documents and Settings/Administrateur/Bureau/data/IFRoutard-Conseillers.csv";
+            String fichierSejours = "C:/Documents and Settings/Administrateur/Bureau/data/IFRoutard-Voyages-Sejours.csv";
+            String fichierCircuits = "C:/Documents and Settings/Administrateur/Bureau/data/IFRoutard-Voyages-Circuits.csv";
+            String fichierClients =  "C:/Documents and Settings/Administrateur/Bureau/data/IFRoutard-Clients.csv";
            
             
             
@@ -217,10 +217,23 @@ public class InscriptionInteractive {
         String telephone = Saisie.lireChaine("Votre telephone \n") ;
         String email = Saisie.lireChaine("Votre email \n");   
     
+       Integer acceptez = Saisie.lireInteger("Acceptez vous de recevoir des mails? 1- Oui, 2-Non\n", list);
+        boolean accepte; 
+        if(iCivilite==1){
+            accepte  = true;
+        }else{
+            accepte  = false;
+        }
     
         Client client = new Client(stringCivilite,nom,prenom,dateDeNaissance,adresse,telephone,email);
+        client.setAccepte(accepte);
         Service.creerClient(client);
         System.out.println("Le client ajoute est : " + client);
+        
+        
+        if(accepte){
+            Service.envoyerMail(client);
+        }
     }
     
     public void demanderDevis(){
@@ -271,7 +284,7 @@ public class InscriptionInteractive {
        
        Service.creerDevis(d);
        System.out.println(d);
-      
+       
     }
     
     
