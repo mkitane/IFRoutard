@@ -19,7 +19,7 @@ This repo contains the basic services to manage clients, employees and travels a
 This repo also contains the web and desktop mockups in order to create a web travel agency application wich could be find at  :
 
 ```
-/ others / PdfsIHM
+/ utils / PdfsIHM
 ```
 
 ---
@@ -36,7 +36,7 @@ Dummy data can be found at :
 
 * opencsv
 	
-		/ others / opencsv-2.3.jar
+		/ utils / opencsv-2.3.jar
 	
 *	Java DB Driver
 	*	derby.jar
